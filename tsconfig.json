@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "ESNext",
@@ -26,5 +27,11 @@
     ]
   },
   "exclude": ["node_modules", "build"],
-  "include": ["./src", "webpack.config.ts", "./scss.d.ts", "jest.config.ts"]
+  "include": [
+    "./src",
+    "webpack.config.ts",
+    "./scss.d.ts",
+    "jest.config.ts",
+    "index.ts"
+  ]
 }

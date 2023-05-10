@@ -9,3 +9,7 @@ public/*
 **/*.d.ts
 # custom definition files
 /src/types/
+#express
+index.ts
+#node
+dist/*
