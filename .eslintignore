@@ -11,5 +11,7 @@ public/*
 /src/types/
 #express
 index.ts
+index.test.ts
+server.ts
 #node
 dist/*
