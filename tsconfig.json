@@ -32,6 +32,6 @@
     "webpack.config.ts",
     "./scss.d.ts",
     "jest.config.ts",
-    "index.ts"
+    "./server"
   ]
 }

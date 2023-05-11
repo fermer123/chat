@@ -10,8 +10,6 @@ public/*
 # custom definition files
 /src/types/
 #express
-index.ts
-index.test.ts
-server.ts
+server/*
 #node
 dist/*

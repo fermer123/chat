@@ -8,8 +8,8 @@
     "build": "webpack --mode=production --env production --progress",
     "lint": "eslint src/**/*.{ts,tsx} --quiet --fix",
     "test": "jest --runInBand --detectOpenHandles --forceExit",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "serv": "node dist/index.js"
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server/index.js\"",
+    "serv": "node dist/server/index.js"
   },
   "keywords": [],
   "author": "",
