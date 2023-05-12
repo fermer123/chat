@@ -9,7 +9,7 @@ describe('<App/>', () => {
   });
   test('to be in', () => {
     render(<App />);
-    const element = screen.getByText(/asd/i);
-    expect(element).toBeInTheDocument();
+    const element = screen.getByTestId(/app/i);
+    expect(element).toHaveClass('app');
   });
 });
