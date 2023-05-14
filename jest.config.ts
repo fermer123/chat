@@ -20,6 +20,7 @@ const jestConfig: JestConfigWithTsJest = {
   },
   moduleNameMapper: {
     '^@src(.*)$': '<rootDir>/src$1',
+    uuid: require.resolve('uuid'),
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
   setupFilesAfterEnv: ['./src/jest.setup.ts'],

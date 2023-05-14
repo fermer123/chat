@@ -8,6 +8,11 @@ const devServer: DevServerConfiguration = {
   port: 3001,
   open: true,
   historyApiFallback: true,
+  proxy: {
+    '/chat': {
+      target: 'http://localhost:3000',
+    },
+  },
 };
 
 const config: Configuration = {
