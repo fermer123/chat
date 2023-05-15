@@ -19,6 +19,7 @@ const InputForm: FC<IInputFormProps & FieldProps> = ({
   return (
     <TextField
       {...field}
+      label={label}
       className={style.input_form}
       fullWidth
       error={!!error && !!touched}

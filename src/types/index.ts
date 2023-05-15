@@ -1,4 +1,4 @@
-export interface IData {
+export interface IAuthData {
   email: string;
   password: string;
 }

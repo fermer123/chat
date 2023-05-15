@@ -1,8 +1,25 @@
-import {FC} from 'react';
+import {FC, memo} from 'react';
+import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
 import style from './PostButton.module.scss';
 
-const PostButton: FC = () => {
-  return <div>button</div>;
+interface IPostButtonProps {
+  disabled: boolean;
+  onSubmit: () => void;
+}
+
+const PostButton: FC<IPostButtonProps> = ({disabled, onSubmit}) => {
+  return (
+    <Button
+      data-testid='postData'
+      type='submit'
+      onClick={onSubmit}
+      disabled={disabled}
+      variant='outlined'
+      endIcon={<SendIcon />}>
+      Войти
+    </Button>
+  );
 };
 
-export default PostButton;
+export default memo(PostButton);
