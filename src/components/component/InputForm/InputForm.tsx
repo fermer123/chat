@@ -1,7 +1,6 @@
 import {FC, memo} from 'react';
 import {TextField} from '@mui/material';
 import {FieldProps} from 'formik';
-import style from './InputForm.module.scss';
 
 interface IInputFormProps {
   label: string;
@@ -20,7 +19,6 @@ const InputForm: FC<IInputFormProps & FieldProps> = ({
     <TextField
       {...field}
       label={label}
-      className={style.input_form}
       fullWidth
       error={!!error && !!touched}
       variant='outlined'

@@ -5,7 +5,6 @@ import * as Yup from 'yup';
 import {IAuthData} from '@src/types';
 import PostButton from '@src/components/component/PostButton/PostButton';
 import {v4 as uuidv4} from 'uuid';
-import style from './Authorization.module.scss';
 
 const Authorization: FC = () => {
   const validationSchema = Yup.object().shape({

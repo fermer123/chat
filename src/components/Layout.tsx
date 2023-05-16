@@ -1,7 +1,7 @@
 import {useLocation, Route, Routes} from 'react-router-dom';
 import {FC} from 'react';
-import Chat from './Page/Chat/Chat';
-import Authorization from './Page/Authorization/Authorization';
+import Authorization from './Pages/Authorization/Authorization';
+import Chat from './Pages/Chat/Chat';
 
 const Layout: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

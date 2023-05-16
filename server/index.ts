@@ -1,7 +1,6 @@
 import express, {Express, Request, Response} from 'express';
 import cors from 'cors';
 import {Server} from 'socket.io';
-
 import {createServer} from 'http';
 import router from './routes';
 
@@ -12,7 +11,13 @@ const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: '*',
+    methods: ['GET', 'POST'],
   },
 });
-
-export default app;
+io.on('connection', (socket) => {
+  console.log('connection', socket);
+  io.on('disconnect', () => {
+    console.log('disconnect');
+  });
+});
+export default server;

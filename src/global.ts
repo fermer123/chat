@@ -1,22 +1,22 @@
-@import '~@csstools/normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-body {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+import {createGlobalStyle} from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+
+body{
   font-style: normal;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  background: #1f1f1f85;
-  line-height: 1;
-}
+   font-weight: 400;
+ }
 *,
 ::after,
 ::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
 }
 h1,
 h2,
@@ -57,3 +57,5 @@ img {
 ::-webkit-scrollbar {
   width: 0;
 }
+`;
+export default GlobalStyle;

@@ -47,21 +47,6 @@ const config: Configuration = {
         },
         exclude: /build/,
       },
-      {
-        test: /\.s(a|c)ss$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[path][name]__[local]--[hash:base64:5]',
-              },
-            },
-          },
-          'sass-loader',
-        ],
-      },
     ],
   },
 };

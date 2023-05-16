@@ -19,12 +19,7 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
-    "noFallthroughCasesInSwitch": true,
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules"
-      }
-    ]
+    "noFallthroughCasesInSwitch": true
   },
   "exclude": ["node_modules", "build"],
   "include": [
