@@ -1,7 +1,6 @@
 import {FC, memo} from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
-import style from './PostButton.module.scss';
 
 interface IPostButtonProps {
   disabled: boolean;
