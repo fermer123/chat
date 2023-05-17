@@ -4,7 +4,21 @@ import {Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import {IAuthData} from '@src/types';
 import PostButton from '@src/components/component/PostButton/PostButton';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {v4 as uuidv4} from 'uuid';
+import styled from 'styled-components';
+import {Box} from '@mui/material';
+
+const Ayth = styled(Box)`
+  height: 100vh;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 10px;
+`;
 
 const Authorization: FC = () => {
   const validationSchema = Yup.object().shape({
@@ -21,7 +35,6 @@ const Authorization: FC = () => {
     password: '',
   };
   const onSubmit = (values: IAuthData, actions: FormikHelpers<IAuthData>) => {
-    console.log('success');
     actions.resetForm();
     actions.setSubmitting(false);
   };
@@ -32,29 +45,31 @@ const Authorization: FC = () => {
       onSubmit={onSubmit}>
       {({errors, touched, isSubmitting, dirty, handleSubmit}) => (
         <Form>
-          <Field
-            error={errors.email}
-            touched={touched.email}
-            label='Введите email'
-            name='email'
-            component={InputForm}
-          />
-          <Field
-            error={errors.password}
-            touched={touched.password}
-            label='Введите пароль'
-            name='password'
-            component={InputForm}
-          />
-          <PostButton
-            disabled={
-              !dirty ||
-              isSubmitting ||
-              !!(errors.email && touched.email) ||
-              !!(errors.password && touched.password)
-            }
-            onSubmit={handleSubmit}
-          />
+          <Ayth>
+            <Field
+              error={errors.email}
+              touched={touched.email}
+              label='Введите email'
+              name='email'
+              component={InputForm}
+            />
+            <Field
+              error={errors.password}
+              touched={touched.password}
+              label='Введите пароль'
+              name='password'
+              component={InputForm}
+            />
+            <PostButton
+              disabled={
+                !dirty ||
+                isSubmitting ||
+                !!(errors.email && touched.email) ||
+                !!(errors.password && touched.password)
+              }
+              onSubmit={handleSubmit}
+            />
+          </Ayth>
         </Form>
       )}
     </Formik>

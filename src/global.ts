@@ -1,4 +1,5 @@
 import {createGlobalStyle} from 'styled-components';
+
 const GlobalStyle = createGlobalStyle`
 
 body{
@@ -8,6 +9,7 @@ body{
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
    font-weight: 400;
+   line-height:1;
  }
 *,
 ::after,

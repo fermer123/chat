@@ -7,6 +7,7 @@ interface IInputFormProps {
   error: string;
   touched: boolean;
 }
+
 const InputForm: FC<IInputFormProps & FieldProps> = ({
   label,
   error,
