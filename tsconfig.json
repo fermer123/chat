@@ -25,5 +25,11 @@
     "skipLibCheck": true //temporarily
   },
   "exclude": ["node_modules", "build"],
-  "include": ["./src", "webpack.config.ts", "jest.config.ts", "./server"]
+  "include": [
+    "./src",
+    "webpack.config.ts",
+    "jest.config.ts",
+    "./server",
+    "./server/**/*.json"
+  ]
 }
