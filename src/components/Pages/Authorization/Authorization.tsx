@@ -8,6 +8,7 @@ import PostButton from '@src/components/component/PostButton/PostButton';
 import {v4 as uuidv4} from 'uuid';
 import styled from 'styled-components';
 import {Box} from '@mui/material';
+import axios from '@src/components/api/index';
 
 const Ayth = styled(Box)`
   height: 100vh;
@@ -34,10 +35,34 @@ const Authorization: FC = () => {
     email: '',
     password: '',
   };
-  const onSubmit = (values: IAuthData, actions: FormikHelpers<IAuthData>) => {
+  const onSubmit = async (
+    values: IAuthData,
+    actions: FormikHelpers<IAuthData>,
+  ) => {
+    try {
+      await axios.post(
+        '/register',
+        {
+          email: values.email,
+          password: values.password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+      console.log(String(error));
+    }
+
     actions.resetForm();
     actions.setSubmitting(false);
   };
+
   return (
     <Formik
       initialValues={initialValues}
