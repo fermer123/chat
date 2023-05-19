@@ -45,6 +45,7 @@ const Authorization: FC = () => {
         {
           email: values.email,
           password: values.password,
+          id: uuidv4(),
         },
         {
           headers: {
@@ -58,7 +59,6 @@ const Authorization: FC = () => {
       }
       console.log(String(error));
     }
-
     actions.resetForm();
     actions.setSubmitting(false);
   };

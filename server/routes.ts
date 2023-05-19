@@ -1,37 +1,54 @@
 import express, {Request, Response} from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
-import {USER_JSON_FILE, port} from './constants/constants';
-import {IAuth} from './types/types';
+import {USERS_JSON_FILE} from './constants/constants';
+import {IAuth, IUserData} from './types/types';
 import jwt from 'jsonwebtoken';
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
-const users: IAuth[] = JSON.parse(fs.readFileSync(USER_JSON_FILE, 'utf8'));
+// const userData: IUserData = JSON.parse(
+//   fs.readFileSync(USERS_JSON_FILE, 'utf8'),
+// );
+// const users: IAuth[] = userData?.users;
+let users: IAuth[] = [];
+
+if (fs.existsSync(USERS_JSON_FILE)) {
+  const userData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
+  const parsedUserData: IUserData = JSON.parse(userData);
+  users = parsedUserData.users;
+}
+
 router.get('/', (req: Request, res: Response) => {
-  res.json(`nodemone & concurently & port ${port} ${JSON.stringify(users)}`);
+  res.json(
+    `nodemone & concurently & port ${USERS_JSON_FILE} ${JSON.stringify(users)}`,
+  );
 });
 
 router.post('/login', jsonParser, async (req: Request, res: Response) => {
-  const {email, password} = await req.body;
-  console.log(req.body);
+  const {email, password, id}: IAuth = await req.body;
   try {
     const user = users.find(
       (e) => e.email === email && e.password === password,
     );
     if (user) {
-      const token = jwt.sign({email: user.email}, '');
+      const token = jwt.sign({email: user.email}, `${id}`);
+      console.log({token});
+      res.json({token});
     }
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
+      console.log(error);
       return res.status(500).send(error.message);
+    } else {
+      console.log(error);
+      return res.status(500).send(String(error)); //вызову внутреннюю ошибку
     }
-    return res.status(500).send(String(error)); //вызову внутреннюю ошибку
   }
 });
 
 router.post('/register', jsonParser, async (req: Request, res: Response) => {
-  const {email, password} = await req.body;
+  const {email, password, id}: IAuth = await req.body;
   try {
     const user = users.find(
       (e) => e.email === email && e.password === password,
@@ -39,10 +56,12 @@ router.post('/register', jsonParser, async (req: Request, res: Response) => {
     if (user) {
       return res.status(400).json({error: 'Пользователь сущетсвует'}); //вызову не верный запрос
     }
-    fs.writeFileSync(USER_JSON_FILE);
+    users.push({email, password, id});
+    fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({users}));
+    res.status(200).send('success');
   } catch (error) {
     if (error instanceof Error) {
-      res.status(500).send(error.message);
+      return res.status(500).send(error.message);
     }
     return res.status(500).send(String(error));
   }

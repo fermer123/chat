@@ -3,6 +3,7 @@ export interface IAuth {
   password: string;
   id: number;
 }
-export interface IChat {
-  message: string[];
+
+export interface IUserData {
+  users: IAuth[];
 }

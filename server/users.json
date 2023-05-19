@@ -1,10 +1,15 @@
-[
-  {
-    "email": "qwe@mail.ru",
-    "password": "qwe"
-  },
-  {
-    "username": "asd@mail.ru",
-    "password": "asd"
-  }
-]
+{
+  "users": [
+    {
+      "email": "qwe@mail.ru",
+      "password": "qwe",
+      "id": 1
+    },
+    {
+      "username": "asd@mail.ru",
+      "password": "asd",
+      "id": 2
+    }
+  ],
+  "rooms": []
+}
