@@ -93,6 +93,7 @@ const Authorization: FC = () => {
                 !!(errors.password && touched.password)
               }
               onSubmit={handleSubmit}
+              label='login'
             />
           </Ayth>
         </Form>

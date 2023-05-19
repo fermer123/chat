@@ -5,9 +5,10 @@ import Button from '@mui/material/Button';
 interface IPostButtonProps {
   disabled: boolean;
   onSubmit: () => void;
+  label: string;
 }
 
-const PostButton: FC<IPostButtonProps> = ({disabled, onSubmit}) => {
+const PostButton: FC<IPostButtonProps> = ({disabled, onSubmit, label}) => {
   return (
     <Button
       data-testid='postData'
@@ -16,7 +17,7 @@ const PostButton: FC<IPostButtonProps> = ({disabled, onSubmit}) => {
       disabled={disabled}
       variant='outlined'
       endIcon={<SendIcon />}>
-      Войти
+      {label}
     </Button>
   );
 };
