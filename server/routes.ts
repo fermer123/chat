@@ -32,7 +32,10 @@ router.post('/login', jsonParser, async (req: Request, res: Response) => {
       (e) => e.email === email && e.password === password,
     );
     if (user) {
-      const token = jwt.sign({email: user.email}, `${id}`);
+      const token = jwt.sign(
+        {email: user.email, password: user.password},
+        `${id}`,
+      );
       console.log({token});
       res.json({token});
     }
@@ -58,7 +61,7 @@ router.post('/register', jsonParser, async (req: Request, res: Response) => {
     }
     users.push({email, password, id});
     fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({users}));
-    res.status(200).send('success');
+    return res.status(200).send('success');
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).send(error.message);

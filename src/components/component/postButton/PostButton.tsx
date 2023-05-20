@@ -1,5 +1,5 @@
 import {FC, memo} from 'react';
-import SendIcon from '@mui/icons-material/Send';
+import LoginIcon from '@mui/icons-material/Login';
 import Button from '@mui/material/Button';
 
 interface IPostButtonProps {
@@ -16,7 +16,8 @@ const PostButton: FC<IPostButtonProps> = ({disabled, onSubmit, label}) => {
       onClick={onSubmit}
       disabled={disabled}
       variant='outlined'
-      endIcon={<SendIcon />}>
+      fullWidth
+      endIcon={<LoginIcon />}>
       {label}
     </Button>
   );
