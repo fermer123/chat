@@ -7,13 +7,14 @@ const HeaderContainer = styled(Box)`
   padding: 1rem 1rem;
   display: flex;
   justify-content: flex-end;
+  background-color: gray;
 `;
 
-interface IHeader {
+export interface IHeaderProps {
   user: string;
 }
 
-const Header: FC<IHeader> = ({user}) => {
+const Header: FC<IHeaderProps> = ({user}) => {
   console.log(user);
   return (
     <HeaderContainer>

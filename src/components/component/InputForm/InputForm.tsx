@@ -2,7 +2,7 @@ import {FC, memo} from 'react';
 import {TextField} from '@mui/material';
 import {FieldProps} from 'formik';
 
-interface IInputFormProps {
+export interface IInputFormProps {
   label: string;
   error: string;
   touched: boolean;
@@ -24,6 +24,7 @@ const InputForm: FC<IInputFormProps & FieldProps> = ({
       error={!!error && !!touched}
       variant='outlined'
       helperText={!!error && !!touched ? error : null}
+      data-testid='textField'
     />
   );
 };
