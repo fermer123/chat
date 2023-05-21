@@ -6,21 +6,21 @@ import Header from './component/Header/Header';
 
 const Layout: FC = () => {
   const [token, setToken] = useState<string>('');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const location = useLocation();
   useEffect(() => {
-    const localStorageItem = localStorage.getItem('user');
-    if (localStorageItem) {
-      setToken(localStorageItem);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => {
+      const localStorageItem = localStorage.getItem('user');
+      if (localStorageItem) {
+        setToken(localStorageItem);
+      }
+    };
+  }, [token]);
 
   return (
     <>
       {location.pathname !== '/' ? <Header token={token} /> : ''}
       <Routes>
-        <Route path='/' element={<Authorization setToken={setToken} />} />
+        <Route path='/' element={<Authorization />} />
         <Route path='/chat' element={<Chat />} />
       </Routes>
     </>

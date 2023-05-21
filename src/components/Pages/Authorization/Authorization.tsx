@@ -66,7 +66,6 @@ const Authorization: FC = () => {
         },
       );
       localStorage.setItem('user', email);
-      console.log('register');
     } catch (error) {
       if (error instanceof Error) {
         setErrorRegister(error.message);
@@ -91,7 +90,6 @@ const Authorization: FC = () => {
         },
       );
       localStorage.setItem('user', email);
-      console.log('login');
     } catch (error) {
       if (error instanceof Error) {
         setErrorLogin(error.message);

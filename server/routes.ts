@@ -36,7 +36,6 @@ router.post('/login', jsonParser, async (req: Request, res: Response) => {
         {email: user.email, password: user.password},
         `${id}`,
       );
-      console.log({token});
       res.json({token});
     }
   } catch (error: unknown) {

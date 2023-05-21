@@ -3,6 +3,7 @@ import {io, Socket} from 'socket.io-client';
 import {useLocation} from 'react-router-dom';
 
 const Chat: FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {search} = useLocation();
   const socket: Socket = io('http://localhost:3000/');
   useEffect(() => {
