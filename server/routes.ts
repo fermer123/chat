@@ -7,10 +7,6 @@ import jwt from 'jsonwebtoken';
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
-// const userData: IUserData = JSON.parse(
-//   fs.readFileSync(USERS_JSON_FILE, 'utf8'),
-// );
-// const users: IAuth[] = userData?.users;
 let users: IAuth[] = [];
 
 if (fs.existsSync(USERS_JSON_FILE)) {
@@ -20,9 +16,7 @@ if (fs.existsSync(USERS_JSON_FILE)) {
 }
 
 router.get('/', (req: Request, res: Response) => {
-  res.json(
-    `nodemone & concurently & port ${USERS_JSON_FILE} ${JSON.stringify(users)}`,
-  );
+  res.json(` ${JSON.stringify(users)}`);
 });
 
 router.post('/login', jsonParser, async (req: Request, res: Response) => {
@@ -36,7 +30,9 @@ router.post('/login', jsonParser, async (req: Request, res: Response) => {
         {email: user.email, password: user.password},
         `${id}`,
       );
-      res.json({token});
+      return res.status(200).json({token});
+    } else {
+      return res.status(400).json('Пользователя не существует');
     }
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -56,11 +52,11 @@ router.post('/register', jsonParser, async (req: Request, res: Response) => {
       (e) => e.email === email && e.password === password,
     );
     if (user) {
-      return res.status(400).json({error: 'Пользователь сущетсвует'}); //вызову не верный запрос
+      return res.json({error: 'Пользователь сущетсвует'});
     }
     users.push({email, password, id});
     fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({users}));
-    return res.status(200).send('success');
+    return res.status(200).json('success');
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).send(error.message);

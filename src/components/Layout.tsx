@@ -5,20 +5,18 @@ import Chat from './Pages/Chat/Chat';
 import Header from './component/Header/Header';
 
 const Layout: FC = () => {
-  const [token, setToken] = useState<string>('');
+  const [user, setUser] = useState<string>('');
   const location = useLocation();
   useEffect(() => {
-    return () => {
-      const localStorageItem = localStorage.getItem('user');
-      if (localStorageItem) {
-        setToken(localStorageItem);
-      }
-    };
-  }, [token]);
+    const localStorageItem = localStorage.getItem('user');
+    if (localStorageItem) {
+      setUser(localStorageItem);
+    }
+  }, []);
 
   return (
     <>
-      {location.pathname !== '/' ? <Header token={token} /> : ''}
+      {location.pathname !== '/' ? <Header user={user} /> : ''}
       <Routes>
         <Route path='/' element={<Authorization />} />
         <Route path='/chat' element={<Chat />} />
