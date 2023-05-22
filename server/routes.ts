@@ -33,7 +33,7 @@ router.post('/login', jsonParser, async (req: Request, res: Response) => {
       );
       return res.status(200).json({token});
     } else {
-      return res.status(400).json('testing');
+      return res.status(400).json('Не верный email или пароль');
     }
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -41,7 +41,7 @@ router.post('/login', jsonParser, async (req: Request, res: Response) => {
       return res.status(500).send(error.message);
     } else {
       console.log(error);
-      return res.status(500).send(String(error)); //вызову внутреннюю ошибку
+      return res.status(500).send(String(error));
     }
   }
 });
@@ -53,12 +53,13 @@ router.post('/register', jsonParser, async (req: Request, res: Response) => {
       (e) => e.email === email && e.password === password,
     );
     if (user) {
-      return res.status(400).json('testing');
+      return res.status(400).json('Email уже используется');
+    } else {
+      users.push({email, password, id});
+      fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({users}));
+      return res.status(200).json('success');
     }
-    users.push({email, password, id});
-    fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({users}));
-    return res.status(200).json('success');
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return res.status(500).send(error.message);
     }

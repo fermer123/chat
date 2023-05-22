@@ -4,7 +4,6 @@ import {Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import {IAuthData} from '@src/types';
 import PostButton from '@src/components/component/PostButton/PostButton';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {v4 as uuidv4} from 'uuid';
 import styled from 'styled-components';
 import {Box, Chip} from '@mui/material';
@@ -75,7 +74,7 @@ const Authorization: FC = () => {
       localStorage.setItem('user', email);
       setErrorRegister('');
       push('/');
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorRegister(error.message);
       }
@@ -101,7 +100,7 @@ const Authorization: FC = () => {
       localStorage.setItem('user', email);
       setErrorLogin('');
       push('/chat');
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorLogin(error.message);
       }
@@ -149,7 +148,7 @@ const Authorization: FC = () => {
                   !!(errors.password && touched.password)
                 }
                 onSubmit={handleSubmit}
-                label={switchAuth ? 'register' : 'login'}
+                label={switchAuth ? 'sign up' : 'log in'}
               />
               <SwitchAuth
                 switchAuth={switchAuth}
