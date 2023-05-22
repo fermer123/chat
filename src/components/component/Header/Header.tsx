@@ -15,7 +15,6 @@ export interface IHeaderProps {
 }
 
 const Header: FC<IHeaderProps> = ({user}) => {
-  console.log(user);
   return (
     <HeaderContainer>
       <Avatar sx={{bgcolor: '#2196f3'}}>{[...user].at(0)}</Avatar>

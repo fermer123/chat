@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import {Box, Chip} from '@mui/material';
 import axios from '@src/components/api/index';
 import SwitchAuth from '@src/components/component/SwitchAuth/SwitchAuth';
+import {useNavigate} from 'react-router-dom';
 
 const Auth = styled(Box)`
   height: 100vh;
@@ -33,6 +34,7 @@ const ErrorAlert = styled(Chip)`
 `;
 
 const Authorization: FC = () => {
+  const push = useNavigate();
   const [switchAuth, setSwitchAuth] = useState(false);
   const [errorLogin, setErrorLogin] = useState<string>('');
   const [errorRegister, setErrorRegister] = useState<string>('');
@@ -72,6 +74,7 @@ const Authorization: FC = () => {
       );
       localStorage.setItem('user', email);
       setErrorRegister('');
+      push('/');
     } catch (error) {
       if (error instanceof Error) {
         setErrorRegister(error.message);
@@ -97,6 +100,7 @@ const Authorization: FC = () => {
       );
       localStorage.setItem('user', email);
       setErrorLogin('');
+      push('/chat');
     } catch (error) {
       if (error instanceof Error) {
         setErrorLogin(error.message);
