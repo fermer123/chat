@@ -7,7 +7,7 @@ import PostButton from '@src/components/component/PostButton/PostButton';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {v4 as uuidv4} from 'uuid';
 import styled from 'styled-components';
-import {Box} from '@mui/material';
+import {Box, Chip} from '@mui/material';
 import axios from '@src/components/api/index';
 import SwitchAuth from '@src/components/component/SwitchAuth/SwitchAuth';
 
@@ -25,6 +25,11 @@ const SwithAuthForm = styled(Box)`
   display: flex;
   flex-direction: row;
   gap: 1rem;
+`;
+
+const ErrorAlert = styled(Chip)`
+  display: flex;
+  justify-content: center;
 `;
 
 const Authorization: FC = () => {
@@ -66,6 +71,7 @@ const Authorization: FC = () => {
         },
       );
       localStorage.setItem('user', email);
+      setErrorRegister('');
     } catch (error) {
       if (error instanceof Error) {
         setErrorRegister(error.message);
@@ -90,6 +96,7 @@ const Authorization: FC = () => {
         },
       );
       localStorage.setItem('user', email);
+      setErrorLogin('');
     } catch (error) {
       if (error instanceof Error) {
         setErrorLogin(error.message);
@@ -145,6 +152,14 @@ const Authorization: FC = () => {
                 switchAuthForm={switchAuthForm}
               />
             </SwithAuthForm>
+            <span>
+              {!!errorLogin && <ErrorAlert label={errorLogin} color='error' />}
+            </span>
+            <span>
+              {!!errorRegister && (
+                <ErrorAlert label={errorRegister} color='error' />
+              )}
+            </span>
           </Auth>
         </Form>
       )}

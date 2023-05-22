@@ -4,6 +4,7 @@ import fs from 'fs';
 import {USERS_JSON_FILE} from './constants/constants';
 import {IAuth, IUserData} from './types/types';
 import jwt from 'jsonwebtoken';
+import {error} from 'console';
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
@@ -32,7 +33,7 @@ router.post('/login', jsonParser, async (req: Request, res: Response) => {
       );
       return res.status(200).json({token});
     } else {
-      return res.status(400).json('Пользователя не существует');
+      return res.status(400).json('testing');
     }
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -52,7 +53,7 @@ router.post('/register', jsonParser, async (req: Request, res: Response) => {
       (e) => e.email === email && e.password === password,
     );
     if (user) {
-      return res.json({error: 'Пользователь сущетсвует'});
+      return res.status(400).json('testing');
     }
     users.push({email, password, id});
     fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({users}));
