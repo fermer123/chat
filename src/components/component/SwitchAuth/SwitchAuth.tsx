@@ -7,7 +7,13 @@ export interface ISwitchAuth {
 }
 
 const SwitchAuth: FC<ISwitchAuth> = ({switchAuthForm, switchAuth}) => {
-  return <Switch checked={switchAuth} onChange={switchAuthForm} />;
+  return (
+    <Switch
+      data-testid='switch-auth'
+      checked={switchAuth}
+      onChange={switchAuthForm}
+    />
+  );
 };
 
 export default memo(SwitchAuth);
