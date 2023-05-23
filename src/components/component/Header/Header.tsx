@@ -13,10 +13,9 @@ const HeaderContainer = styled(Box)`
 
 const AvatarButton = styled(Button)`
   background-color: transparent;
+  padding-left: 20px;
 `;
-const PopoverButton = styled(Button)`
-  padding: 1rem 1rem;
-`;
+const PopoverButton = styled(Button)``;
 
 export interface IHeaderProps {
   user: string;
@@ -53,6 +52,10 @@ const Header: FC<IHeaderProps> = ({user, setUser}) => {
         open={Boolean(open)}
         anchorEl={open}
         onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'center',
+          horizontal: 'left',
+        }}
         transformOrigin={{
           vertical: 'center',
           horizontal: 'right',
