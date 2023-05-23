@@ -1,8 +1,9 @@
 import {useLocation, Route, Routes} from 'react-router-dom';
-import {FC, useEffect, useState} from 'react';
+import {FC, useEffect, useState, useCallback} from 'react';
 import Authorization from './Pages/Authorization/Authorization';
 import Chat from './Pages/Chat/Chat';
 import Header from './component/Header/Header';
+import SelectRoom from './Pages/SelectRoom/SelectRoom';
 
 const Layout: FC = () => {
   const [user, setUser] = useState<string>('');
@@ -12,13 +13,25 @@ const Layout: FC = () => {
     if (localStorageItem) {
       setUser(localStorageItem);
     }
-  }, []);
+  }, [setUser]);
+
+  const setUserItem = useCallback(
+    (userItem: string) => {
+      setUser(userItem);
+    },
+    [setUser],
+  );
 
   return (
     <>
-      {location.pathname !== '/' ? <Header user={user} /> : ''}
+      {location.pathname !== '/' ? (
+        <Header setUser={setUserItem} user={user} />
+      ) : (
+        ''
+      )}
       <Routes>
-        <Route path='/' element={<Authorization />} />
+        <Route path='/' element={<Authorization setUser={setUserItem} />} />
+        <Route path='/room' element={<SelectRoom />} />
         <Route path='/chat' element={<Chat />} />
       </Routes>
     </>

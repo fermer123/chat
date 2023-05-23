@@ -32,7 +32,11 @@ const ErrorAlert = styled(Chip)`
   justify-content: center;
 `;
 
-const Authorization: FC = () => {
+interface IAuthorizationProps {
+  setUser: (user: string) => void;
+}
+
+const Authorization: FC<IAuthorizationProps> = ({setUser}) => {
   const push = useNavigate();
   const [switchAuth, setSwitchAuth] = useState(false);
   const [errorLogin, setErrorLogin] = useState<string>('');
@@ -71,9 +75,10 @@ const Authorization: FC = () => {
           },
         },
       );
+      setUser(email);
       localStorage.setItem('user', email);
       setErrorRegister('');
-      push('/');
+      push('/room');
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorRegister(error.message);
@@ -97,9 +102,10 @@ const Authorization: FC = () => {
           },
         },
       );
+      setUser(email);
       localStorage.setItem('user', email);
       setErrorLogin('');
-      push('/chat');
+      push('/room');
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorLogin(error.message);

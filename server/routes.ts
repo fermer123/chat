@@ -37,10 +37,8 @@ router.post('/login', jsonParser, async (req: Request, res: Response) => {
     }
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.log(error);
       return res.status(500).send(error.message);
     } else {
-      console.log(error);
       return res.status(500).send(String(error));
     }
   }
