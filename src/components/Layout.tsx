@@ -31,7 +31,7 @@ const Layout: FC = () => {
       )}
       <Routes>
         <Route path='/' element={<Authorization setUser={setUserItem} />} />
-        <Route path='/room' element={<SelectRoom />} />
+        <Route path='/room' element={<SelectRoom user={user} />} />
         <Route path='/chat' element={<Chat />} />
       </Routes>
     </>

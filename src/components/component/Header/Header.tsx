@@ -13,7 +13,6 @@ const HeaderContainer = styled(Box)`
 
 const AvatarButton = styled(Button)`
   background-color: transparent;
-  padding-left: 20px;
 `;
 const PopoverButton = styled(Button)``;
 

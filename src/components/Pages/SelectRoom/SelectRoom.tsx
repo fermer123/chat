@@ -7,8 +7,12 @@ const SelecetRoomContainer = styled(Box)`
   flex-direction: row;
 `;
 
-const SelectRoom: FC = () => {
-  return <SelecetRoomContainer>Hello</SelecetRoomContainer>;
+interface ISelectRoomProps {
+  user: string;
+}
+
+const SelectRoom: FC<ISelectRoomProps> = ({user}) => {
+  return <SelecetRoomContainer>Hello {user}</SelecetRoomContainer>;
 };
 
 export default SelectRoom;
