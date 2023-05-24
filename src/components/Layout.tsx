@@ -4,6 +4,7 @@ import Authorization from './Pages/Authorization/Authorization';
 import Chat from './Pages/Chat/Chat';
 import Header from './component/Header/Header';
 import SelectRoom from './Pages/SelectRoom/SelectRoom';
+import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
 
 const Layout: FC = () => {
   const [user, setUser] = useState<string>('');
@@ -31,8 +32,23 @@ const Layout: FC = () => {
       )}
       <Routes>
         <Route path='/' element={<Authorization setUser={setUserItem} />} />
-        <Route path='/room' element={<SelectRoom user={user} />} />
-        <Route path='/chat' element={<Chat />} />
+
+        <Route
+          path='/room'
+          element={
+            <ProtectedRoute user={user}>
+              <SelectRoom user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/chat'
+          element={
+            <ProtectedRoute user={user}>
+              <Chat />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
