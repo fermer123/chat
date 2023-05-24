@@ -38,8 +38,6 @@ const setup = (props: IInputFormProps) => {
 };
 
 describe('InputForm', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-
   test('toMatchSnapShot', () => {
     const tree = renderer
       .create(

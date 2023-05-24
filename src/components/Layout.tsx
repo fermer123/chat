@@ -7,14 +7,14 @@ import SelectRoom from './Pages/SelectRoom/SelectRoom';
 import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
 
 const Layout: FC = () => {
-  const [user, setUser] = useState<string>('');
+  const [user, setUser] = useState<string>(localStorage.getItem('user') || '');
   const location = useLocation();
   useEffect(() => {
     const localStorageItem = localStorage.getItem('user');
     if (localStorageItem) {
       setUser(localStorageItem);
     }
-  }, [setUser]);
+  }, [user]);
 
   const setUserItem = useCallback(
     (userItem: string) => {
