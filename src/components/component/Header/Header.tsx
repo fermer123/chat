@@ -1,4 +1,4 @@
-import {Avatar, Box, Button, Popover} from '@mui/material';
+import {Avatar, Box, Button, Popover, Typography} from '@mui/material';
 import {FC, memo, useState, useCallback, MouseEvent} from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
@@ -14,7 +14,11 @@ const HeaderContainer = styled(Box)`
 const AvatarButton = styled(Button)`
   background-color: transparent;
 `;
-const PopoverButton = styled(Button)``;
+const PopoverList = styled(Box)`
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+`;
 
 export interface IHeaderProps {
   user: string;
@@ -59,7 +63,10 @@ const Header: FC<IHeaderProps> = ({user, setUser}) => {
           vertical: 'center',
           horizontal: 'right',
         }}>
-        <PopoverButton onClick={logOut}>Log out</PopoverButton>
+        <PopoverList>
+          <Typography>{user}</Typography>
+          <Button onClick={logOut}>Log out</Button>
+        </PopoverList>
       </Popover>
     </HeaderContainer>
   );
