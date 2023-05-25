@@ -24,7 +24,7 @@ npm start
 yarn start
 ```
 
-# Для запуска сервера [сервер](http://localhost:3000/) введите
+# Для запуска [сервера](http://localhost:3000/) введите
 
 ```
 npm run dev

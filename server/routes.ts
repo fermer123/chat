@@ -4,7 +4,6 @@ import fs from 'fs';
 import {USERS_JSON_FILE} from './constants/constants';
 import {IAuth, IUserData} from './types/types';
 import jwt from 'jsonwebtoken';
-import {error} from 'console';
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
