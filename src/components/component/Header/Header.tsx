@@ -48,7 +48,10 @@ const Header: FC<IHeaderProps> = ({user, setUser}) => {
 
   return (
     <HeaderContainer>
-      <AvatarButton disabled={!user} onClick={popoverHandler}>
+      <AvatarButton
+        data-testid='AvatarButton'
+        disabled={!user}
+        onClick={popoverHandler}>
         <Avatar sx={{bgcolor: '#2196f3'}}>{[...user].at(0)}</Avatar>
       </AvatarButton>
       <Popover
@@ -63,7 +66,7 @@ const Header: FC<IHeaderProps> = ({user, setUser}) => {
           vertical: 'center',
           horizontal: 'right',
         }}>
-        <PopoverList>
+        <PopoverList data-testid='popover'>
           <Typography>{user}</Typography>
           <Button onClick={logOut}>Log out</Button>
         </PopoverList>
