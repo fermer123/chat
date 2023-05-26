@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import {renderHook, act} from '@testing-library/react';
 import useLocalStorage from './useLocalStorage';
 
