@@ -1,29 +1,29 @@
 import {useState} from 'react';
 
-const useLocalStorage = <T>(
-  key: string,
-  initialValue: T,
-): [T, (x: T) => void] => {
+type SetValue<T> = (value: T | ((val: T) => T)) => void;
+
+const useLocalStorage = <T>(key: string, initialValue: T): [T, SetValue<T>] => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
-      const value = window.localStorage.getItem(key);
-      return value ? (JSON.parse(value) as T) : initialValue;
-    } catch (err) {
+      const item = window.localStorage.getItem(key);
+      return item ? (JSON.parse(item) as T) : initialValue;
+    } catch (error) {
       return initialValue;
     }
   });
 
-  const setValue = (newValue: T) => {
+  const setValue: SetValue<T> = (value) => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const valueToStore =
-        newValue instanceof Function ? newValue(storedValue) : newValue;
-      // Save state
-      setStoredValue(valueToStore);
-      // Save to local storage
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {}
+      const newValue = value instanceof Function ? value(storedValue) : value;
+      window.localStorage.setItem(key, JSON.stringify(newValue));
+      setStoredValue(newValue);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      // console.log(error);
+    }
   };
+
   return [storedValue, setValue];
 };
+
 export default useLocalStorage;
