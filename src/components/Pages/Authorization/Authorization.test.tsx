@@ -7,7 +7,7 @@ import Authorization from './Authorization';
 const setup = () => {
   return render(
     <MemoryRouter>
-      <Authorization setUser={jest.fn} />
+      <Authorization />
     </MemoryRouter>,
   );
 };
@@ -17,7 +17,7 @@ describe('Authorization', () => {
     const tree = renderer
       .create(
         <MemoryRouter>
-          <Authorization setUser={jest.fn} />
+          <Authorization />
         </MemoryRouter>,
       )
       .toJSON();

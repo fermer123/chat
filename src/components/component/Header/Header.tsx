@@ -2,6 +2,7 @@ import {Avatar, Box, Button, Popover, Typography} from '@mui/material';
 import {FC, memo, useState, useCallback, MouseEvent} from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
+import useLocalStorage from '../Hooks/useLocalStorage';
 
 const HeaderContainer = styled(Box)`
   width: 100%;
@@ -20,13 +21,9 @@ const PopoverList = styled(Box)`
   flex-direction: column;
 `;
 
-export interface IHeaderProps {
-  user: string;
-  setUser: (user: string) => void;
-}
-
-const Header: FC<IHeaderProps> = ({user, setUser}) => {
+const Header: FC = () => {
   const push = useNavigate();
+  const [user, setUser] = useLocalStorage('user', 'default');
   const [open, setOpen] = useState<HTMLButtonElement | null>(null);
 
   const popoverHandler = useCallback(

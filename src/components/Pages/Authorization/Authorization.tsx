@@ -10,6 +10,7 @@ import {Box, Chip} from '@mui/material';
 import axios from '@src/components/api/index';
 import SwitchAuth from '@src/components/component/SwitchAuth/SwitchAuth';
 import {useNavigate} from 'react-router-dom';
+import useLocalStorage from '@src/components/component/Hooks/useLocalStorage';
 
 const Auth = styled(Box)`
   height: 100vh;
@@ -32,11 +33,9 @@ const ErrorAlert = styled(Chip)`
   justify-content: center;
 `;
 
-interface IAuthorizationProps {
-  setUser: (user: string) => void;
-}
+const Authorization: FC = () => {
+  const [, setUser] = useLocalStorage<string>('user', '');
 
-const Authorization: FC<IAuthorizationProps> = ({setUser}) => {
   const push = useNavigate();
   const [switchAuth, setSwitchAuth] = useState(false);
   const [errorLogin, setErrorLogin] = useState<string>('');
@@ -76,7 +75,7 @@ const Authorization: FC<IAuthorizationProps> = ({setUser}) => {
         },
       );
       setUser(email);
-      localStorage.setItem('user', email);
+      setUser(email);
       setErrorRegister('');
       push('/room');
     } catch (error: unknown) {
@@ -103,7 +102,7 @@ const Authorization: FC<IAuthorizationProps> = ({setUser}) => {
         },
       );
       setUser(email);
-      localStorage.setItem('user', email);
+      setUser(email);
       setErrorLogin('');
       push('/room');
     } catch (error: unknown) {

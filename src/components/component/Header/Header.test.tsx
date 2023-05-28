@@ -2,18 +2,13 @@ import renderer from 'react-test-renderer';
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import {MemoryRouter} from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import Header, {IHeaderProps} from './Header';
+import Header from './Header';
 
 describe('Header', () => {
-  const setUser = jest.fn();
-  const customProps: IHeaderProps = {
-    user: 'qwe@mail.ru',
-    setUser,
-  };
   const setup = () => {
     return render(
       <MemoryRouter>
-        <Header {...customProps} />
+        <Header />
       </MemoryRouter>,
     );
   };
@@ -22,7 +17,7 @@ describe('Header', () => {
     const tree = renderer
       .create(
         <MemoryRouter>
-          <Header {...customProps} />
+          <Header />
         </MemoryRouter>,
       )
       .toJSON();
