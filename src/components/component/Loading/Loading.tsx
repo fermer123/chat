@@ -21,11 +21,21 @@ const SwithAuthForm = styled(Box)`
 const Loading: FC = () => {
   return (
     <Auth>
-      <Skeleton variant='rounded' height={55} />
-      <Skeleton variant='rounded' height={55} />
+      <Skeleton data-testid='skeleton' variant='rounded' height={55} />
+      <Skeleton data-testid='skeleton' variant='rounded' height={55} />
       <SwithAuthForm>
-        <Skeleton variant='rounded' width={600} height={55} />
-        <Skeleton variant='rounded' width={120} height={55} />
+        <Skeleton
+          data-testid='skeleton'
+          variant='rounded'
+          width={600}
+          height={55}
+        />
+        <Skeleton
+          data-testid='skeleton'
+          variant='rounded'
+          width={120}
+          height={55}
+        />
       </SwithAuthForm>
     </Auth>
   );
