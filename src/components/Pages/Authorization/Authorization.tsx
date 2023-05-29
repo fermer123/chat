@@ -75,7 +75,6 @@ const Authorization: FC = () => {
         },
       );
       setUser(email);
-      setUser(email);
       setErrorRegister('');
       push('/room');
     } catch (error: unknown) {
@@ -101,7 +100,6 @@ const Authorization: FC = () => {
           },
         },
       );
-      setUser(email);
       setUser(email);
       setErrorLogin('');
       push('/room');

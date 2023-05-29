@@ -19,7 +19,7 @@ const Layout: FC = () => {
           path='/'
           element={
             <Suspense fallback={<Loading />}>
-              <Authorization />{' '}
+              <Authorization />
             </Suspense>
           }
         />
