@@ -4,13 +4,13 @@ import {Field, Form, Formik, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import {IAuthData} from '@src/types';
 import PostButton from '@src/components/component/PostButton/PostButton';
-import {v4 as uuidv4} from 'uuid';
 import styled from 'styled-components';
 import {Box, Chip} from '@mui/material';
-import axios from '@src/components/api/index';
 import SwitchAuth from '@src/components/component/SwitchAuth/SwitchAuth';
 import {useNavigate} from 'react-router-dom';
 import useLocalStorage from '@src/components/component/Hooks/useLocalStorage';
+import userLogin from '@src/components/api/userLogin';
+import userRegister from '@src/components/api/userRegister';
 
 const Auth = styled(Box)`
   height: 100vh;
@@ -59,63 +59,23 @@ const Authorization: FC = () => {
     password: '',
   };
 
-  const userRegister = async (email: string, password: string) => {
-    try {
-      await axios.post(
-        '/register',
-        {
-          email,
-          password,
-          id: uuidv4(),
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );
-      setUser(email);
-      setErrorRegister('');
-      push('/room');
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorRegister(error.message);
-      }
-      setErrorRegister(String(error));
-    }
-  };
-
-  const userLogin = async (email: string, password: string) => {
-    try {
-      await axios.post(
-        '/login',
-        {
-          email,
-          password,
-          id: uuidv4(),
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );
-      setUser(email);
-      setErrorLogin('');
-      push('/room');
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorLogin(error.message);
-      }
-      setErrorLogin(String(error));
-    }
-  };
-
   const onSubmit = (values: IAuthData, actions: FormikHelpers<IAuthData>) => {
     if (switchAuth) {
-      userRegister(values.email, values.password);
+      userRegister({
+        email: values.email,
+        password: values.password,
+        setError: setErrorRegister,
+        push,
+        setUser,
+      });
     }
-    userLogin(values.email, values.password);
+    userLogin({
+      email: values.email,
+      password: values.password,
+      setError: setErrorLogin,
+      push,
+      setUser,
+    });
     actions.resetForm();
     actions.setSubmitting(false);
   };
