@@ -68,14 +68,15 @@ const Authorization: FC = () => {
         push,
         setUser,
       });
+    } else {
+      userLogin({
+        email: values.email,
+        password: values.password,
+        setError: setErrorLogin,
+        push,
+        setUser,
+      });
     }
-    userLogin({
-      email: values.email,
-      password: values.password,
-      setError: setErrorLogin,
-      push,
-      setUser,
-    });
     actions.resetForm();
     actions.setSubmitting(false);
   };

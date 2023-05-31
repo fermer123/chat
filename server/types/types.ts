@@ -1,7 +1,7 @@
 export interface IAuth {
   email: string;
   password: string;
-  id: number;
+  id: string;
 }
 
 export interface IUserData {

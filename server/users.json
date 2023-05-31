@@ -3,12 +3,12 @@
     {
       "email": "qwe@mail.ru",
       "password": "qwe",
-      "id": 1
+      "id": "1"
     },
     {
       "username": "asd@mail.ru",
       "password": "asd",
-      "id": 2
+      "id": "2"
     }
   ],
   "rooms": []

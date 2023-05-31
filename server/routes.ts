@@ -51,11 +51,10 @@ router.post('/register', jsonParser, async (req: Request, res: Response) => {
     );
     if (user) {
       return res.status(400).json('Email уже используется');
-    } else {
-      users.push({email, password, id});
-      fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({users}));
-      return res.status(200).json('success');
     }
+    users.push({email, password, id});
+    fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({users}));
+    return res.status(200).json('success');
   } catch (error: unknown) {
     if (error instanceof Error) {
       return res.status(500).send(error.message);
