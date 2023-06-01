@@ -41,6 +41,7 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
         id='demo-multiple-name'
         value={selectRoom}
         onChange={handleChange}
+        data-testid='select'
         input={<OutlinedInput label='room number' />}>
         {[1, 2, 3].map((room) => (
           <MenuItem key={room} value={room}>

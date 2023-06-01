@@ -1,8 +1,14 @@
-import * as React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import {Dispatch, FC, SetStateAction, memo, useCallback} from 'react';
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  SyntheticEvent,
+  memo,
+  useCallback,
+} from 'react';
 import MuiAlert from '@mui/material/Alert';
 
 export interface ISnackbarComponentProps {
@@ -21,7 +27,7 @@ const SnackbarComponent: FC<ISnackbarComponentProps> = ({
   // const [open, setOpen] = useState<boolean>(false);
 
   const handleClose = useCallback(
-    (event: React.SyntheticEvent | Event, reason?: string) => {
+    (event: SyntheticEvent | Event, reason?: string) => {
       if (reason === 'clickaway') {
         return;
       }
@@ -42,11 +48,9 @@ const SnackbarComponent: FC<ISnackbarComponentProps> = ({
 
   return (
     <Snackbar open={open} autoHideDuration={5000} action={action}>
-      <div>
-        <MuiAlert severity={error ? 'error' : 'success'} sx={{width: '100%'}}>
-          {message}
-        </MuiAlert>
-      </div>
+      <MuiAlert severity={error ? 'error' : 'success'} sx={{width: '100%'}}>
+        {message}
+      </MuiAlert>
     </Snackbar>
   );
 };

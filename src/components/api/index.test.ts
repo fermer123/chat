@@ -15,7 +15,6 @@ describe('axiosCreate', () => {
     expect(resp.status).toBe(200);
     expect(resp.data).toBeDefined();
   });
-
   test('not correct login', async () => {
     const data = {
       email: 'qwe1@mail.ru',
