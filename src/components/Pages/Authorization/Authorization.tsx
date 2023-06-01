@@ -120,10 +120,12 @@ const Authorization: FC = () => {
               />
             </SwithAuthForm>
             <span>
-              {!!errorLogin && <ErrorAlert label={errorLogin} color='error' />}
+              {!!errorLogin && !switchAuth && (
+                <ErrorAlert label={errorLogin} color='error' />
+              )}
             </span>
             <span>
-              {!!errorRegister && (
+              {!!errorRegister && switchAuth && (
                 <ErrorAlert label={errorRegister} color='error' />
               )}
             </span>

@@ -1,5 +1,6 @@
 import {v4 as uuidv4} from 'uuid';
 import {IUserAuthProps} from '@src/types';
+import {isAxiosError, AxiosError} from 'axios';
 import axios from './index';
 
 const userRegister = async <T>({
@@ -27,10 +28,12 @@ const userRegister = async <T>({
     setError('');
     push('/room');
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      setError(error.message);
+    if (isAxiosError(error)) {
+      const axiosError = error as AxiosError;
+      setError(String(axiosError.response?.data) ?? 'error');
+    } else {
+      setError(String(error));
     }
-    setError(String(error));
   }
 };
 
