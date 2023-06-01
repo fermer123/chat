@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import {Dispatch, FC, SetStateAction, memo, useCallback} from 'react';
 import MuiAlert from '@mui/material/Alert';
 
-interface ISnackbarComponentProps {
+export interface ISnackbarComponentProps {
   message: string;
   error: boolean;
   open: boolean;
@@ -41,13 +41,13 @@ const SnackbarComponent: FC<ISnackbarComponentProps> = ({
   );
 
   return (
-    <div>
-      <Snackbar open={open} autoHideDuration={5000} action={action}>
+    <Snackbar open={open} autoHideDuration={5000} action={action}>
+      <div>
         <MuiAlert severity={error ? 'error' : 'success'} sx={{width: '100%'}}>
           {message}
         </MuiAlert>
-      </Snackbar>
-    </div>
+      </div>
+    </Snackbar>
   );
 };
 

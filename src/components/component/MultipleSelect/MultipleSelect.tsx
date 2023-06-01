@@ -11,10 +11,9 @@ import styled from 'styled-components';
 
 const SelectRoom = styled(Box)`
   width: 100%;
-  padding: 0 1rem;
 `;
 
-interface IMultipleSelectProps {
+export interface IMultipleSelectProps {
   selectRoom: number;
   setSelectRoom: (room: number) => void;
 }
@@ -35,7 +34,7 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
 
   return (
     <SelectRoom>
-      <InputLabel id='demo-multiple-name-label'>room</InputLabel>
+      <InputLabel id='demo-multiple-name-label'>select room</InputLabel>
       <Select
         fullWidth
         labelId='demo-multiple-name-label'
