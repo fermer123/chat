@@ -31,6 +31,14 @@ const SwithAuthForm = styled(Box)`
 const ErrorAlert = styled(Chip)`
   display: flex;
   justify-content: center;
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+  transition: 0.5 ease;
 `;
 
 const Authorization: FC = () => {
@@ -119,16 +127,12 @@ const Authorization: FC = () => {
                 switchAuthForm={switchAuthForm}
               />
             </SwithAuthForm>
-            <span>
-              {!!errorLogin && !switchAuth && (
-                <ErrorAlert label={errorLogin} color='error' />
-              )}
-            </span>
-            <span>
-              {!!errorRegister && switchAuth && (
-                <ErrorAlert label={errorRegister} color='error' />
-              )}
-            </span>
+            {!!errorLogin && !switchAuth && (
+              <ErrorAlert label={errorLogin} color='error' />
+            )}
+            {!!errorRegister && switchAuth && (
+              <ErrorAlert label={errorRegister} color='error' />
+            )}
           </Auth>
         </Form>
       )}

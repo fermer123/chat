@@ -32,7 +32,7 @@ router.post('/login', jsonParser, async (req: Request, res: Response) => {
       );
       return res.status(200).json({token});
     } else {
-      return res.status(400).json('Не верный Email или пароль');
+      return res.status(400).json('Не верный email или пароль');
     }
   } catch (error: unknown) {
     if (error instanceof Error) {
