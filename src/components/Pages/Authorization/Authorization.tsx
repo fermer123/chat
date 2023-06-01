@@ -31,14 +31,6 @@ const SwithAuthForm = styled(Box)`
 const ErrorAlert = styled(Chip)`
   display: flex;
   justify-content: center;
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-  transition: 0.5 ease;
 `;
 
 const Authorization: FC = () => {
@@ -51,6 +43,8 @@ const Authorization: FC = () => {
 
   const switchAuthForm = useCallback(() => {
     setSwitchAuth(!switchAuth);
+    setErrorLogin('');
+    setErrorRegister('');
   }, [switchAuth]);
 
   const validationSchema = Yup.object().shape({
