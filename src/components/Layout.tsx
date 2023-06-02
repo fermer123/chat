@@ -2,12 +2,12 @@ import {useLocation, Route, Routes} from 'react-router-dom';
 import {FC, Suspense, lazy} from 'react';
 import Chat from './Pages/Chat/Chat';
 import Header from './component/Header/Header';
-import SelectRoom from './Pages/SelectRoom/SelectRoom';
 import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
 import Loading from './component/Loading/Loading';
+import LoadingRoom from './component/Loading/LoadingRoom';
 
 const Authorization = lazy(() => import('./Pages/Authorization/Authorization'));
-
+const SelectRoom = lazy(() => import('./Pages/SelectRoom/SelectRoom'));
 const Layout: FC = () => {
   const location = useLocation();
 
@@ -28,7 +28,9 @@ const Layout: FC = () => {
           path='/room'
           element={
             <ProtectedRoute>
-              <SelectRoom />
+              <Suspense fallback={<LoadingRoom />}>
+                <SelectRoom />
+              </Suspense>
             </ProtectedRoute>
           }
         />
