@@ -8,6 +8,9 @@ const jestConfig: JestConfigWithTsJest = {
     '<rootDir>/src/**/*.test.tsx',
     '<rootDir>/index.test.ts',
   ],
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!**/node_modules/**'],
+  coverageDirectory: '<rootDir>/coverage/',
   transform: {
     // '^.+\\.[tj]sx?$' to process js/ts with `ts-jest`
     // '^.+\\.m?[tj]sx?$' to process js/ts/mjs/mts with `ts-jest`

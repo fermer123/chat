@@ -6,3 +6,5 @@ node_modules/
 __snapshots__/
 #dist
 dist/
+#tests
+coverage/
