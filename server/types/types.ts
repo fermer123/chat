@@ -10,7 +10,7 @@ export interface IAuth {
 export interface IRooms {
   userName: string;
   id?: id;
-  selectRoom: number;
+  selectRoom: string;
   email: email;
 }
 

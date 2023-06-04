@@ -8,7 +8,7 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 let users: IAuth[] = [];
-let rooms = new Map<number, IRooms>();
+let rooms: Map<string, IRooms> = new Map();
 
 if (fs.existsSync(USERS_JSON_FILE)) {
   const userData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
@@ -18,12 +18,9 @@ if (fs.existsSync(USERS_JSON_FILE)) {
 if (fs.existsSync(USERS_JSON_FILE)) {
   const roomsData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
   const parsedRoomsData: IUserData = JSON.parse(roomsData);
-  rooms = new Map<number, IRooms>(
-    Object.entries(parsedRoomsData.rooms).map(([key, value]) => [
-      Number(key),
-      value,
-    ]),
-  );
+  if (parsedRoomsData && parsedRoomsData.rooms) {
+    rooms = new Map<string, IRooms>(Object.entries(parsedRoomsData.rooms));
+  }
 }
 router.get('/', (req: Request, res: Response) => {
   res.json(` ${JSON.stringify(users)}`);
@@ -34,7 +31,8 @@ router.post('/room', jsonParser, async (req: Request, res: Response) => {
   try {
     if (!rooms.has(selectRoom)) {
       rooms.set(selectRoom, {id, userName, selectRoom, email});
-      fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({rooms}));
+      fs.writeFileSync(USERS_JSON_FILE, JSON.stringify([...rooms]));
+      console.log([...rooms]);
       return res.status(200).json('success');
     } else {
       return res.status(400).json('войдите в аккаунт или выбирите комнату');

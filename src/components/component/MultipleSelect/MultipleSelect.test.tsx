@@ -1,12 +1,11 @@
 import renderer from 'react-test-renderer';
-import {render, screen, waitFor} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import {render} from '@testing-library/react';
 import MultipleSelect, {IMultipleSelectProps} from './MultipleSelect';
 
 describe('MultipleSelect', () => {
   const selectRoom = jest.fn();
   const customProps: IMultipleSelectProps = {
-    selectRoom: 1,
+    selectRoom: '1',
     setSelectRoom: selectRoom,
   };
   afterEach(() => {

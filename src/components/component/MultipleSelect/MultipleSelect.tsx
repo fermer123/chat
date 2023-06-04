@@ -14,8 +14,8 @@ const SelectRoom = styled(Box)`
 `;
 
 export interface IMultipleSelectProps {
-  selectRoom: number;
-  setSelectRoom: (room: number) => void;
+  selectRoom: string;
+  setSelectRoom: (room: string) => void;
 }
 
 const MultipleSelect: FC<IMultipleSelectProps> = ({
@@ -27,11 +27,11 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
       const {
         target: {value},
       } = event;
-      setSelectRoom(typeof value === 'number' ? value : null);
+      setSelectRoom(typeof value === 'string' ? value : null);
     },
     [setSelectRoom],
   );
-  const selectList = [1, 2, 3];
+  const selectList = ['1', '2', '3'];
   return (
     <SelectRoom>
       <InputLabel id='demo-multiple-name-label'>select room</InputLabel>

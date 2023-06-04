@@ -1,7 +1,6 @@
 import {NavigateFunction} from 'react-router-dom';
 
 type email = string;
-type id = string;
 type SetError = (email: email) => void;
 type SetUser<T> = (
   value: (T extends string ? string : unknown) | ((val: T) => T),
@@ -9,7 +8,7 @@ type SetUser<T> = (
 
 export interface IUserJoinRoom {
   setError: SetError;
-  selectRoom: number;
+  selectRoom: string;
   userName: string;
   email: email;
   push: NavigateFunction;
