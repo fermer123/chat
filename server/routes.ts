@@ -2,21 +2,50 @@ import express, {Request, Response} from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import {USERS_JSON_FILE} from './constants/constants';
-import {IAuth, IUserData} from './types/types';
+import {IAuth, IRooms, IUserData} from './types/types';
 import jwt from 'jsonwebtoken';
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
 let users: IAuth[] = [];
+let rooms = new Map<number, IRooms>();
 
 if (fs.existsSync(USERS_JSON_FILE)) {
   const userData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
   const parsedUserData: IUserData = JSON.parse(userData);
   users = parsedUserData.users;
 }
-
+if (fs.existsSync(USERS_JSON_FILE)) {
+  const roomsData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
+  const parsedRoomsData: IUserData = JSON.parse(roomsData);
+  rooms = new Map<number, IRooms>(
+    Object.entries(parsedRoomsData.rooms).map(([key, value]) => [
+      Number(key),
+      value,
+    ]),
+  );
+}
 router.get('/', (req: Request, res: Response) => {
   res.json(` ${JSON.stringify(users)}`);
+});
+
+router.post('/room', jsonParser, async (req: Request, res: Response) => {
+  const {userName, id, selectRoom, email}: IRooms = await req.body;
+  try {
+    if (!rooms.has(selectRoom)) {
+      rooms.set(selectRoom, {id, userName, selectRoom, email});
+      fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({rooms}));
+      return res.status(200).json('success');
+    } else {
+      return res.status(400).json('войдите в аккаунт или выбирите комнату');
+    }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return res.status(500).send(error.message);
+    } else {
+      return res.status(500).send(String(error));
+    }
+  }
 });
 
 router.post('/login', jsonParser, async (req: Request, res: Response) => {

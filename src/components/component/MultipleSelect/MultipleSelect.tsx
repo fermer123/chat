@@ -31,7 +31,7 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
     },
     [setSelectRoom],
   );
-
+  const selectList = [1, 2, 3];
   return (
     <SelectRoom>
       <InputLabel id='demo-multiple-name-label'>select room</InputLabel>
@@ -43,7 +43,7 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
         onChange={handleChange}
         data-testid='select'
         input={<OutlinedInput label='room number' />}>
-        {[1, 2, 3].map((room) => (
+        {selectList.map((room) => (
           <MenuItem key={room} value={room}>
             {room}
           </MenuItem>

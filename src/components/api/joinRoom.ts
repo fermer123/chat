@@ -1,21 +1,22 @@
 import {v4 as uuidv4} from 'uuid';
-import {IUserAuthProps} from '@src/types';
 import {AxiosError, isAxiosError} from 'axios';
+import {IUserJoinRoom} from '@src/types';
 import axios from './index';
 
-const userLogin = async <T>({
+const joinRoom = async ({
   email,
-  password,
-  setError,
-  setUser,
   push,
-}: IUserAuthProps<T>) => {
+  selectRoom,
+  userName,
+  setError,
+}: IUserJoinRoom) => {
   try {
     await axios.post(
-      '/login',
+      '/room',
       {
+        userName,
         email,
-        password,
+        selectRoom,
         id: uuidv4(),
       },
       {
@@ -24,9 +25,8 @@ const userLogin = async <T>({
         },
       },
     );
-    setUser(email);
     setError('');
-    push('/room');
+    push(`/chat/room=${selectRoom}&name=${userName}`);
   } catch (error: unknown) {
     if (isAxiosError(error)) {
       const axiosError = error as AxiosError;
@@ -37,4 +37,4 @@ const userLogin = async <T>({
   }
 };
 
-export default userLogin;
+export default joinRoom;
