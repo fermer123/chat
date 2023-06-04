@@ -11,5 +11,15 @@
       "id": "2"
     }
   ],
-  "rooms": []
+  "rooms": [
+    {
+      "1": {
+        "id": "4",
+        "userName": "test",
+        "selectRoom": "4",
+        "email": "test@mail.ru",
+        "messages": ["test"]
+      }
+    }
+  ]
 }

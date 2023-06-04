@@ -12,6 +12,7 @@ export interface IRooms {
   id?: id;
   selectRoom: string;
   email: email;
+  messages?: Array<string>;
 }
 
 export interface IUserData {
