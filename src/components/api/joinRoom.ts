@@ -26,7 +26,7 @@ const joinRoom = async ({
       },
     );
     setError('');
-    push(`/chat/room=${selectRoom}&name=${userName}`);
+    push(`/chat`);
   } catch (error: unknown) {
     if (isAxiosError(error)) {
       const axiosError = error as AxiosError;

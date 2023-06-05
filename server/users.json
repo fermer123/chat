@@ -13,12 +13,11 @@
   ],
   "rooms": [
     {
-      "1": {
+      "4": {
         "id": "4",
         "userName": "test",
         "selectRoom": "4",
-        "email": "test@mail.ru",
-        "messages": ["test"]
+        "email": "test@mail.ru"
       }
     }
   ]

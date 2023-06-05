@@ -30,6 +30,10 @@ router.get('/', (req: Request, res: Response) => {
   );
 });
 
+router.get('/room', (req: Request, res: Response) => {
+  res.json(`rooms: ${JSON.stringify(Object.fromEntries(rooms))} `);
+});
+
 router.post('/room', jsonParser, async (req: Request, res: Response) => {
   const {userName, id, selectRoom, email}: IRooms = await req.body;
   try {
@@ -39,7 +43,6 @@ router.post('/room', jsonParser, async (req: Request, res: Response) => {
         userName,
         selectRoom,
         email,
-        messages: ['test'],
       });
       fs.writeFileSync(
         USERS_JSON_FILE,
@@ -47,7 +50,8 @@ router.post('/room', jsonParser, async (req: Request, res: Response) => {
       );
       return res.status(200).json('success');
     } else {
-      return res.status(400).json('войдите в аккаунт или выбирите комнату');
+      console.log('else');
+      return res.status(400).json('error');
     }
   } catch (error: unknown) {
     if (error instanceof Error) {

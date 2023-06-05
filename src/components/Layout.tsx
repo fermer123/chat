@@ -35,7 +35,7 @@ const Layout: FC = () => {
           }
         />
         <Route
-          path='/chat/:room/:name'
+          path='/chat'
           element={
             <ProtectedRoute>
               <Chat />
