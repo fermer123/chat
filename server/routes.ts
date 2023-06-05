@@ -46,7 +46,7 @@ router.post('/room', jsonParser, async (req: Request, res: Response) => {
       });
       fs.writeFileSync(
         USERS_JSON_FILE,
-        JSON.stringify(Object.fromEntries({...rooms})),
+        JSON.stringify({users: [...users], rooms: Object.fromEntries(rooms)}),
       );
       return res.status(200).json('success');
     } else {
@@ -96,7 +96,10 @@ router.post('/register', jsonParser, async (req: Request, res: Response) => {
       return res.status(400).json('Email уже используется');
     }
     users.push({email, password, id});
-    fs.writeFileSync(USERS_JSON_FILE, JSON.stringify({users}));
+    fs.writeFileSync(
+      USERS_JSON_FILE,
+      JSON.stringify({rooms: [...rooms], users: [...users]}),
+    );
     return res.status(200).json('Success');
   } catch (error: unknown) {
     if (error instanceof Error) {
