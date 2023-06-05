@@ -24,7 +24,7 @@ if (fs.existsSync(USERS_JSON_FILE)) {
 }
 router.get('/', (req: Request, res: Response) => {
   res.json(
-    `users:  ${JSON.stringify(users)} Rooms: ${JSON.stringify(
+    `users:  ${JSON.stringify(users)} rooms: ${JSON.stringify(
       Object.fromEntries(rooms),
     )} `,
   );
@@ -34,10 +34,17 @@ router.post('/room', jsonParser, async (req: Request, res: Response) => {
   const {userName, id, selectRoom, email}: IRooms = await req.body;
   try {
     if (!rooms.has(selectRoom)) {
-      rooms.set(selectRoom, {id, userName, selectRoom, email});
-      console.log(rooms);
-      fs.writeFileSync(USERS_JSON_FILE, JSON.stringify(Object.entries(rooms)));
-      console.log(rooms);
+      rooms.set(selectRoom, {
+        id,
+        userName,
+        selectRoom,
+        email,
+        messages: ['test'],
+      });
+      fs.writeFileSync(
+        USERS_JSON_FILE,
+        JSON.stringify(Object.fromEntries({...rooms})),
+      );
       return res.status(200).json('success');
     } else {
       return res.status(400).json('войдите в аккаунт или выбирите комнату');
