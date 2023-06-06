@@ -31,15 +31,4 @@ describe('axiosCreate', () => {
       }
     }
   });
-  // eslint-disable-next-line jest/no-commented-out-tests
-  // test('register', async () => {
-  //   const data = {
-  //     email: 'test@mail.ru',
-  //     password: 'qwe',
-  //     id: '100',
-  //   };
-  //   const resp = await axios.post('/register', data);
-  //   expect(resp.status).toBe(404);
-  //   expect(resp.data).toBeDefined();
-  // });
 });
