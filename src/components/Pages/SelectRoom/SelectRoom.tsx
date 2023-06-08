@@ -25,12 +25,13 @@ const SelectRoom: FC = () => {
   const [selectRoom, setSelectRoom] = useState<string>('1');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string>('');
+  console.time('userNameHandler');
   const userNameHandler = useMemo(() => {
     const findSymbol = user.split('').findIndex((e) => e === '@');
     const userName = user.slice(0, findSymbol);
     return userName;
   }, [user]);
-
+  console.timeEnd('userNameHandler');
   const onJoin = () => {
     joinRoom({
       email: user,

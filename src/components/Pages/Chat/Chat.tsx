@@ -10,7 +10,6 @@ const Chat: FC = () => {
   const socket: Socket = io('http://localhost:3000/');
   useEffect(() => {
     const searchParams = Object.fromEntries(new URLSearchParams(search));
-    console.log(params);
     setParams(searchParams);
     socket.emit('join', params);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,7 +20,7 @@ const Chat: FC = () => {
       console.log(data);
     });
   }, [socket]);
-  console.log(params);
+
   return <div>Chat</div>;
 };
 

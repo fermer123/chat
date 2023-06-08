@@ -17,12 +17,11 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   console.log('connection');
-  socket.on('join', ({name, room}) => {
-    socket.join(room);
+  socket.on('join', (data) => {
+    socket.join(data?.room);
+    socket.emit('message', {data: {user: {name: 'qwe', message: 'qwe'}}});
   });
-  socket.emit('message', {
-    data: {user: {name: 'qwe', message: 'qwe'}},
-  });
+
   socket.on('disconnect', () => {
     console.log('disconnect');
   });
