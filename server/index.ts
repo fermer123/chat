@@ -32,7 +32,8 @@ io.on('connection', (socket) => {
   console.log('connection');
   socket.on('join', (data) => {
     socket.join(data?.room);
-    rooms.get(data?.room).userName;
+    console.log(data);
+    rooms.get(data?.room);
     socket.emit('message', {data: {user: {name: 'qwe', message: 'qwe'}}});
   });
 

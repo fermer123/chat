@@ -43,6 +43,7 @@ router.post('/room', jsonParser, async (req: Request, res: Response) => {
         userName,
         selectRoom,
         email,
+        messages: [],
       });
       fs.writeFileSync(
         USERS_JSON_FILE,

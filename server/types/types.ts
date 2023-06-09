@@ -1,5 +1,6 @@
 type id = string;
 type email = string;
+type messages = Array<string>;
 
 export interface IAuth {
   email: string;
@@ -7,18 +8,12 @@ export interface IAuth {
   id: email;
 }
 
-type User = {
-  id: string;
-  userName: string;
-  selectRoom: string;
-  email: string;
-};
-
 export interface IRooms {
   userName: string;
   id?: id;
   selectRoom: string;
   email: email;
+  messages: messages;
 }
 
 export interface IUserData {
