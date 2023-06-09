@@ -7,7 +7,7 @@ export interface IProtectedRouteProps {
 }
 
 const ProtectedRoute: FC<IProtectedRouteProps> = ({children}) => {
-  const [user] = useLocalStorage<string>('user', 'default');
+  const [user] = useLocalStorage<string>('user', '');
 
   if (!user) {
     return <Navigate to='/' />;

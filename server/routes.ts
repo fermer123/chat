@@ -49,10 +49,8 @@ router.post('/room', jsonParser, async (req: Request, res: Response) => {
         JSON.stringify({users: [...users], rooms: Object.fromEntries(rooms)}),
       );
       return res.status(200).json('success');
-    } else {
-      console.log('else');
-      return res.status(400).json('error');
     }
+    return res.status(200).json('success');
   } catch (error: unknown) {
     if (error instanceof Error) {
       return res.status(500).send(error.message);

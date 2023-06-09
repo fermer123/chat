@@ -7,6 +7,13 @@ export interface IAuth {
   id: email;
 }
 
+type User = {
+  id: string;
+  userName: string;
+  selectRoom: string;
+  email: string;
+};
+
 export interface IRooms {
   userName: string;
   id?: id;
