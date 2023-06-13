@@ -11,7 +11,9 @@ const Chat: FC = () => {
   useEffect(() => {
     const searchParams = Object.fromEntries(new URLSearchParams(search));
     setParams(searchParams);
-    socket.emit('join', params);
+    if (params) {
+      socket.emit('join', params);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

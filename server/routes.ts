@@ -55,6 +55,7 @@ router.post('/room', jsonParser, async (req: Request, res: Response) => {
           ['messages', []],
         ]),
       );
+      console.log(rooms);
       fs.writeFileSync(
         USERS_JSON_FILE,
         JSON.stringify({users: [...users], rooms: Object.fromEntries(rooms)}),
