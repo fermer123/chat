@@ -5,15 +5,15 @@ import {createServer} from 'http';
 import router from './routes';
 import fs from 'fs';
 import {USERS_JSON_FILE} from './constants/constants';
-import {IRooms, IUserData} from './types/types';
+import {ChatData, IUserData} from './types/types';
 
-let rooms: Map<string, IRooms> = new Map([]);
+let rooms: Map<string, ChatData> = new Map([]);
 
 if (fs.existsSync(USERS_JSON_FILE)) {
   const roomsData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
   const parsedRoomsData: IUserData = JSON.parse(roomsData);
   if (parsedRoomsData && parsedRoomsData.rooms) {
-    rooms = new Map<string, IRooms>(Object.entries(parsedRoomsData.rooms));
+    rooms = new Map(Object.entries(parsedRoomsData.rooms));
   }
 }
 

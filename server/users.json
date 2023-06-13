@@ -13,13 +13,18 @@
   ],
   "rooms": [
     {
-      "4": {
-        "id": "4",
-        "userName": "test",
-        "selectRoom": "4",
-        "email": "test@mail.ru",
-        "messages": []
-      }
+      "4": [
+        [
+          "users",
+          {
+            "id": "4",
+            "userName": "test",
+            "selectRoom": "4",
+            "email": "test@mail.ru"
+          }
+        ],
+        ["messages", []]
+      ]
     }
   ]
 }

@@ -1,6 +1,6 @@
 type id = string;
 type email = string;
-type messages = Array<string>;
+export type messages = Array<string>;
 
 export interface IAuth {
   email: string;
@@ -8,15 +8,16 @@ export interface IAuth {
   id: email;
 }
 
-export interface IRooms {
+export interface IRoomUser {
   userName: string;
   id?: id;
   selectRoom: string;
   email: email;
-  messages: messages;
 }
+
+export type ChatData = Map<string, IRoomUser[] | messages>;
 
 export interface IUserData {
   users: IAuth[];
-  rooms: Record<string, IRooms>;
+  rooms: Record<string, ChatData>;
 }

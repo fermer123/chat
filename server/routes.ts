@@ -2,13 +2,13 @@ import express, {Request, Response} from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import {USERS_JSON_FILE} from './constants/constants';
-import {IAuth, IRooms, IUserData} from './types/types';
+import {ChatData, IAuth, IRoomUser, IUserData, messages} from './types/types';
 import jwt from 'jsonwebtoken';
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
 let users: IAuth[] = [];
-let rooms: Map<string, IRooms> = new Map([]);
+let rooms: Map<string, ChatData> = new Map([]);
 
 if (fs.existsSync(USERS_JSON_FILE)) {
   const userData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
@@ -19,7 +19,7 @@ if (fs.existsSync(USERS_JSON_FILE)) {
   const roomsData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
   const parsedRoomsData: IUserData = JSON.parse(roomsData);
   if (parsedRoomsData && parsedRoomsData.rooms) {
-    rooms = new Map<string, IRooms>(Object.entries(parsedRoomsData.rooms));
+    rooms = new Map(Object.entries(parsedRoomsData.rooms));
   }
 }
 router.get('/', (req: Request, res: Response) => {
@@ -35,16 +35,26 @@ router.get('/room', (req: Request, res: Response) => {
 });
 
 router.post('/room', jsonParser, async (req: Request, res: Response) => {
-  const {userName, id, selectRoom, email}: IRooms = await req.body;
+  const {userName, id, selectRoom, email}: IRoomUser = await req.body;
   try {
     if (!rooms.has(selectRoom)) {
-      rooms.set(selectRoom, {
-        id,
-        userName,
+      rooms.set(
         selectRoom,
-        email,
-        messages: [],
-      });
+        new Map([
+          [
+            'users',
+            [
+              {
+                id,
+                userName,
+                selectRoom,
+                email,
+              },
+            ],
+          ],
+          ['messages', []],
+        ]),
+      );
       fs.writeFileSync(
         USERS_JSON_FILE,
         JSON.stringify({users: [...users], rooms: Object.fromEntries(rooms)}),
