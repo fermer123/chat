@@ -5,7 +5,7 @@ import {createServer} from 'http';
 import router from './routes';
 import fs from 'fs';
 import {USERS_JSON_FILE} from './constants/constants';
-import {ChatData, IUserData} from './types/types';
+import {ChatData, IUserData, IUrlParam} from './types/types';
 
 let rooms: Map<string, ChatData> = new Map([]);
 
@@ -30,10 +30,11 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   console.log('connection');
-  socket.on('join', (data) => {
+  socket.on('join', (data: IUrlParam) => {
     socket.join(data?.room);
-    console.log(data);
-    rooms.get(data?.room);
+    console.log(rooms.get(data?.room));
+    // rooms.get(data?.room).get('users');
+    // console.log(rooms.get(data.room));
     socket.emit('message', {data: {user: {name: 'qwe', message: 'qwe'}}});
   });
 

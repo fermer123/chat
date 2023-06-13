@@ -21,3 +21,8 @@ export interface IUserData {
   users: IAuth[];
   rooms: Record<string, ChatData>;
 }
+
+export interface IUrlParam {
+  name: string;
+  room: string;
+}

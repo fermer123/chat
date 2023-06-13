@@ -17,6 +17,7 @@ const Chat: FC = () => {
 
   useEffect(() => {
     socket.on('message', ({data}) => {
+      // eslint-disable-next-line no-console
       console.log(data);
     });
   }, [socket]);
