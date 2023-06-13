@@ -31,11 +31,11 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   console.log('connection');
   socket.on('join', (data: IUrlParam) => {
-    socket.join(data?.room);
-    console.log(rooms.get(data?.room));
+    // socket.join(data?.room);
+    console.log(rooms.get(data?.room).get('users'));
     // rooms.get(data?.room).get('users');
     // console.log(rooms.get(data.room));
-    socket.emit('message', {data: {user: {name: 'qwe', message: 'qwe'}}});
+    // socket.emit('message', {data: {user: {name: 'qwe', message: 'qwe'}}});
   });
 
   socket.on('disconnect', () => {

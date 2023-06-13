@@ -2,7 +2,7 @@ import express, {Request, Response} from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import {USERS_JSON_FILE} from './constants/constants';
-import {ChatData, IAuth, IRoomUser, IUserData, messages} from './types/types';
+import {ChatData, IAuth, IRoomUser, IUserData} from './types/types';
 import jwt from 'jsonwebtoken';
 const router = express.Router();
 const jsonParser = bodyParser.json();
