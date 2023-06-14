@@ -29,11 +29,10 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   console.log('connection');
   socket.on('join', (data: IUrlParam) => {
-    // socket.join(data?.room);
-    // console.log(rooms.get(data?.room).get('users'));
-    // rooms.get(data?.room).get('users');
-    // console.log(rooms.get(data.room));
-    // socket.emit('message', {data: {user: {name: 'qwe', message: 'qwe'}}});
+    socket.join(data?.room);
+    const room = rooms.find((e) => e.roomid === data?.room);
+    room.users.map((e) => (e.id = socket.id));
+    socket.emit('message', {data: {user: {name: socket.id, message: 'qwe'}}});
   });
 
   socket.on('disconnect', () => {

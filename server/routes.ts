@@ -28,43 +28,37 @@ router.get('/room', (req: Request, res: Response) => {
   res.json(`rooms: ${JSON.stringify(rooms)} `);
 });
 
-// router.post('/room', jsonParser, async (req: Request, res: Response) => {
-//   const {userName, id, selectRoom, email}: IRoomUser = await req.body;
-//   try {
-//     if (!rooms.has(selectRoom)) {
-//       rooms.set(
-//         selectRoom,
-//         new Map([
-//           [
-//             'users',
-//             [
-//               {
-//                 id,
-//                 userName,
-//                 selectRoom,
-//                 email,
-//               },
-//             ],
-//           ],
-//           ['messages', []],
-//         ]),
-//       );
-
-//       fs.writeFileSync(
-//         USERS_JSON_FILE,
-//         JSON.stringify({users: [...users], rooms: Object.fromEntries(rooms)}),
-//       );
-//       return res.status(200).json('success');
-//     }
-//     return res.status(200).json('success');
-//   } catch (error: unknown) {
-//     if (error instanceof Error) {
-//       return res.status(500).send(error.message);
-//     } else {
-//       return res.status(500).send(String(error));
-//     }
-//   }
-// });
+router.post('/room', jsonParser, async (req: Request, res: Response) => {
+  const {userName, id, selectRoom, email}: IRoomUser = await req.body;
+  try {
+    const room = rooms.find((e) => e.roomid === selectRoom);
+    if (!room) {
+      rooms.push({
+        roomid: selectRoom,
+        messages: [],
+        users: [
+          {
+            email,
+            selectRoom,
+            userName,
+          },
+        ],
+      });
+      fs.writeFileSync(
+        USERS_JSON_FILE,
+        JSON.stringify({users: [...users], rooms: [...rooms]}),
+      );
+      return res.status(200).json('success');
+    }
+    return res.status(200).json('success');
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return res.status(500).send(error.message);
+    } else {
+      return res.status(500).send(String(error));
+    }
+  }
+});
 
 router.post('/login', jsonParser, async (req: Request, res: Response) => {
   const {email, password, id}: IAuth = await req.body;
