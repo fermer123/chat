@@ -8,18 +8,22 @@ export interface IAuth {
   id: email;
 }
 
-export interface IRoomUser {
+export type IRoomUser = {
   userName: string;
   id?: id;
   selectRoom: string;
   email: email;
-}
+};
 
-export type ChatData = Map<string, IRoomUser[] | messages>;
+export interface ChatData {
+  roomid: string;
+  users: IRoomUser[];
+  messages: messages;
+}
 
 export interface IUserData {
   users: IAuth[];
-  rooms: Record<string, ChatData>;
+  rooms: ChatData[];
 }
 
 export interface IUrlParam {

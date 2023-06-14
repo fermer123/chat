@@ -7,14 +7,12 @@ import fs from 'fs';
 import {USERS_JSON_FILE} from './constants/constants';
 import {ChatData, IUserData, IUrlParam} from './types/types';
 
-let rooms: Map<string, ChatData> = new Map([]);
+let rooms: ChatData[] = [];
 
 if (fs.existsSync(USERS_JSON_FILE)) {
   const roomsData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
   const parsedRoomsData: IUserData = JSON.parse(roomsData);
-  if (parsedRoomsData && parsedRoomsData.rooms) {
-    rooms = new Map(Object.entries(parsedRoomsData.rooms));
-  }
+  rooms = parsedRoomsData.rooms;
 }
 
 const app: Express = express();
@@ -32,7 +30,7 @@ io.on('connection', (socket) => {
   console.log('connection');
   socket.on('join', (data: IUrlParam) => {
     // socket.join(data?.room);
-    console.log(rooms.get(data?.room).get('users'));
+    // console.log(rooms.get(data?.room).get('users'));
     // rooms.get(data?.room).get('users');
     // console.log(rooms.get(data.room));
     // socket.emit('message', {data: {user: {name: 'qwe', message: 'qwe'}}});
