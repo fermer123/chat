@@ -8,7 +8,7 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 let users: IAuth[] = [];
-let rooms: Map<string, ChatData> = new Map([]);
+let rooms: ChatData[] = [];
 
 if (fs.existsSync(USERS_JSON_FILE)) {
   const userData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
@@ -18,59 +18,53 @@ if (fs.existsSync(USERS_JSON_FILE)) {
 if (fs.existsSync(USERS_JSON_FILE)) {
   const roomsData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
   const parsedRoomsData: IUserData = JSON.parse(roomsData);
-  if (parsedRoomsData && parsedRoomsData.rooms) {
-    rooms = new Map(Object.entries(parsedRoomsData.rooms));
-  }
+  rooms = parsedRoomsData.rooms;
 }
 router.get('/', (req: Request, res: Response) => {
-  res.json(
-    `users:  ${JSON.stringify(users)} rooms: ${JSON.stringify(
-      Object.fromEntries(rooms),
-    )} `,
-  );
+  res.json(`users:  ${JSON.stringify(users)} rooms: ${JSON.stringify(rooms)} `);
 });
 
 router.get('/room', (req: Request, res: Response) => {
-  res.json(`rooms: ${JSON.stringify(Object.fromEntries(rooms))} `);
+  res.json(`rooms: ${JSON.stringify(rooms)} `);
 });
 
-router.post('/room', jsonParser, async (req: Request, res: Response) => {
-  const {userName, id, selectRoom, email}: IRoomUser = await req.body;
-  try {
-    if (!rooms.has(selectRoom)) {
-      rooms.set(
-        selectRoom,
-        new Map([
-          [
-            'users',
-            [
-              {
-                id,
-                userName,
-                selectRoom,
-                email,
-              },
-            ],
-          ],
-          ['messages', []],
-        ]),
-      );
-      console.log(rooms);
-      fs.writeFileSync(
-        USERS_JSON_FILE,
-        JSON.stringify({users: [...users], rooms: Object.fromEntries(rooms)}),
-      );
-      return res.status(200).json('success');
-    }
-    return res.status(200).json('success');
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return res.status(500).send(error.message);
-    } else {
-      return res.status(500).send(String(error));
-    }
-  }
-});
+// router.post('/room', jsonParser, async (req: Request, res: Response) => {
+//   const {userName, id, selectRoom, email}: IRoomUser = await req.body;
+//   try {
+//     if (!rooms.has(selectRoom)) {
+//       rooms.set(
+//         selectRoom,
+//         new Map([
+//           [
+//             'users',
+//             [
+//               {
+//                 id,
+//                 userName,
+//                 selectRoom,
+//                 email,
+//               },
+//             ],
+//           ],
+//           ['messages', []],
+//         ]),
+//       );
+
+//       fs.writeFileSync(
+//         USERS_JSON_FILE,
+//         JSON.stringify({users: [...users], rooms: Object.fromEntries(rooms)}),
+//       );
+//       return res.status(200).json('success');
+//     }
+//     return res.status(200).json('success');
+//   } catch (error: unknown) {
+//     if (error instanceof Error) {
+//       return res.status(500).send(error.message);
+//     } else {
+//       return res.status(500).send(String(error));
+//     }
+//   }
+// });
 
 router.post('/login', jsonParser, async (req: Request, res: Response) => {
   const {email, password, id}: IAuth = await req.body;
