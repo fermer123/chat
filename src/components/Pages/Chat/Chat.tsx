@@ -3,23 +3,20 @@ import {io, Socket} from 'socket.io-client';
 import {useLocation} from 'react-router-dom';
 
 const Chat: FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {search} = useLocation();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [params, setParams] = useState<Record<string, string> | null>(null);
 
   const socket: Socket = io('http://localhost:3000/');
   useEffect(() => {
     const searchParams = Object.fromEntries(new URLSearchParams(search));
     setParams(searchParams);
-    if (params) {
-      socket.emit('join', params);
-    }
+    socket.emit('join', searchParams);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     socket.on('message', ({data}) => {
-      // eslint-disable-next-line no-console
       console.log(data);
     });
   }, [socket]);
