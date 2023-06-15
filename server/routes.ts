@@ -48,7 +48,20 @@ router.post('/room', jsonParser, async (req: Request, res: Response) => {
         USERS_JSON_FILE,
         JSON.stringify({users: [...users], rooms: [...rooms]}),
       );
-      return res.status(200).json('success');
+      return res.status(200).json('комната создана');
+    }
+    const sameUser = room.users.find((e) => e.email === email);
+    if (!sameUser) {
+      room.users.push({
+        email,
+        selectRoom,
+        userName,
+      });
+      fs.writeFileSync(
+        USERS_JSON_FILE,
+        JSON.stringify({users: [...users], rooms: [...rooms]}),
+      );
+      return res.status(200).json('подключение к комнате успешно');
     }
     return res.status(200).json('success');
   } catch (error: unknown) {

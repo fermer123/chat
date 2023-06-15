@@ -5,16 +5,21 @@ import {createServer} from 'http';
 import router from './routes';
 import fs from 'fs';
 import {USERS_JSON_FILE} from './constants/constants';
-import {ChatData, IUserData, IUrlParam} from './types/types';
+import {ChatData, IUserData, IUrlParam, IAuth} from './types/types';
 
+let users: IAuth[] = [];
 let rooms: ChatData[] = [];
 
+if (fs.existsSync(USERS_JSON_FILE)) {
+  const userData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
+  const parsedUserData: IUserData = JSON.parse(userData);
+  users = parsedUserData.users;
+}
 if (fs.existsSync(USERS_JSON_FILE)) {
   const roomsData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
   const parsedRoomsData: IUserData = JSON.parse(roomsData);
   rooms = parsedRoomsData.rooms;
 }
-
 const app: Express = express();
 app.use(cors({origin: '*'}));
 app.use(router);
@@ -31,9 +36,14 @@ io.on('connection', (socket) => {
   socket.on('join', ({name, room}: IUrlParam) => {
     socket.join(room);
     const selectRoom = rooms.find((e) => e.roomid === room);
-    selectRoom.users.map((e) =>
-      e.selectRoom === room ? (e.id = socket.id) : e,
-    );
+    if (selectRoom) {
+      selectRoom.users.map((e) => (e.id = socket.id));
+      fs.writeFileSync(
+        USERS_JSON_FILE,
+        JSON.stringify({users: [...users], rooms: [...rooms]}),
+      );
+    }
+
     socket.emit('message', {
       data: {user: {name: name}, room: room, message: socket.id},
     });
