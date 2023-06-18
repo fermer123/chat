@@ -4,25 +4,7 @@
       "email": "qwe@mail.ru",
       "password": "qwe",
       "id": "1"
-    },
-    {
-      "username": "asd@mail.ru",
-      "password": "asd",
-      "id": "2"
     }
   ],
-  "rooms": [
-    {
-      "roomid": "4",
-      "users": [
-        {
-          "id": "4",
-          "userName": "test",
-          "selectRoom": "4",
-          "email": "test@mail.ru"
-        }
-      ],
-      "messages": []
-    }
-  ]
+  "rooms": []
 }

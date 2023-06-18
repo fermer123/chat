@@ -35,15 +35,19 @@ io.on('connection', (socket) => {
   console.log('connection');
   socket.on('join', ({name, room}: IUrlParam) => {
     socket.join(room);
-    const selectRoom = rooms.find((e) => e.roomid === room);
-    if (selectRoom) {
-      selectRoom.users.map((e) => (e.id = socket.id));
-      fs.writeFileSync(
-        USERS_JSON_FILE,
-        JSON.stringify({users: [...users], rooms: [...rooms]}),
-      );
+    if (fs.existsSync(USERS_JSON_FILE)) {
+      const roomsData = fs.readFileSync(USERS_JSON_FILE, 'utf8');
+      const parsedRoomsData: IUserData = JSON.parse(roomsData);
+      rooms = parsedRoomsData.rooms;
+      const selectRoom = rooms.find((e) => e.roomid === room);
+      if (selectRoom) {
+        selectRoom.users.map((e) => (e.id = socket.id));
+        fs.writeFileSync(
+          USERS_JSON_FILE,
+          JSON.stringify({users: [...users], rooms: [...rooms]}),
+        );
+      }
     }
-
     socket.emit('message', {
       data: {user: {name: name}, room: room, message: socket.id},
     });
