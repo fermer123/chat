@@ -25,3 +25,8 @@ export interface IAuthData {
   email: email;
   password: string;
 }
+
+export interface IMessage {
+  user: string;
+  message: string;
+}
