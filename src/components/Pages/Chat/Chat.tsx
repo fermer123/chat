@@ -20,10 +20,10 @@ const Chat: FC = () => {
 
   useEffect(() => {
     socket.on('message', (data: IMessage) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       setMessage((e: IMessage[]) => [...e, data]);
     });
-  }, [socket]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   console.log(message);
   return <div>Chat</div>;
 };

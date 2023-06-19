@@ -41,7 +41,11 @@ io.on('connection', (socket) => {
       const parsedRoomsData: IUserData = JSON.parse(roomsData);
       rooms = parsedRoomsData.rooms;
       if (selectRoom) {
-        selectRoom.users.map((e) => (e.id = socket.id));
+        selectRoom.users.map((e) => {
+          if (e.id === 'undefined') {
+            e.id = socket.id;
+          }
+        });
         fs.writeFileSync(
           USERS_JSON_FILE,
           JSON.stringify({users: [...users], rooms: [...rooms]}),
