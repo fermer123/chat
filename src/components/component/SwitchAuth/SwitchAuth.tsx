@@ -1,5 +1,6 @@
-import {Switch} from '@mui/material';
 import {FC, memo} from 'react';
+
+import {Switch} from '@mui/material';
 
 export interface ISwitchAuth {
   switchAuthForm: () => void;

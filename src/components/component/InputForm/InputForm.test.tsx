@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import renderer from 'react-test-renderer';
+
 import {render, screen} from '@testing-library/react';
+
 import InputForm, {IInputFormProps} from './InputForm';
 
 const mockFieldProps: any = {

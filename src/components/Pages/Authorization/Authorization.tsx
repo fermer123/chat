@@ -1,16 +1,17 @@
 import {FC, useCallback, useState} from 'react';
-import InputForm from '@src/components/component/InputForm/InputForm';
 import {Field, Form, Formik, FormikHelpers} from 'formik';
-import * as Yup from 'yup';
-import {IAuthData} from '@src/types';
-import PostButton from '@src/components/component/PostButton/PostButton';
-import styled from 'styled-components';
-import {Box, Chip} from '@mui/material';
-import SwitchAuth from '@src/components/component/SwitchAuth/SwitchAuth';
 import {useNavigate} from 'react-router-dom';
-import useLocalStorage from '@src/components/component/Hooks/useLocalStorage';
+import styled from 'styled-components';
+import * as Yup from 'yup';
+
+import {Box, Chip} from '@mui/material';
 import userLogin from '@src/components/api/userLogin';
 import userRegister from '@src/components/api/userRegister';
+import useLocalStorage from '@src/components/component/Hooks/useLocalStorage';
+import InputForm from '@src/components/component/InputForm/InputForm';
+import PostButton from '@src/components/component/PostButton/PostButton';
+import SwitchAuth from '@src/components/component/SwitchAuth/SwitchAuth';
+import {IAuthData} from '@src/types';
 
 const Auth = styled(Box)`
   height: 100vh;

@@ -1,7 +1,9 @@
-import {Avatar, Box, Button, Popover, Typography} from '@mui/material';
-import {FC, memo, useState, useCallback, MouseEvent} from 'react';
+import {FC, memo, MouseEvent, useCallback, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
+
+import {Avatar, Box, Button, Popover, Typography} from '@mui/material';
+
 import useLocalStorage from '../Hooks/useLocalStorage';
 
 const HeaderContainer = styled(Box)`

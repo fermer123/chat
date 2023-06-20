@@ -1,6 +1,7 @@
-import {Skeleton, Box} from '@mui/material';
 import {FC} from 'react';
 import styled from 'styled-components';
+
+import {Box, Skeleton} from '@mui/material';
 
 const Auth = styled(Box)`
   height: 100vh;

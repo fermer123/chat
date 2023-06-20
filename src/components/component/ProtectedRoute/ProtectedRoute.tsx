@@ -1,5 +1,6 @@
 import {FC, ReactElement} from 'react';
 import {Navigate} from 'react-router-dom';
+
 import useLocalStorage from '../Hooks/useLocalStorage';
 
 export interface IProtectedRouteProps {

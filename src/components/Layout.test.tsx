@@ -1,6 +1,8 @@
-import renderer from 'react-test-renderer';
 import {MemoryRouter} from 'react-router-dom';
+import renderer from 'react-test-renderer';
+
 import {render, screen} from '@testing-library/react';
+
 import Layout from './Layout';
 
 describe('Layout', () => {

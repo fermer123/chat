@@ -1,5 +1,7 @@
 import renderer from 'react-test-renderer';
+
 import {render} from '@testing-library/react';
+
 import MultipleSelect, {IMultipleSelectProps} from './MultipleSelect';
 
 describe('MultipleSelect', () => {

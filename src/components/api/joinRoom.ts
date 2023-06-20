@@ -1,6 +1,8 @@
-import {v4 as uuidv4} from 'uuid';
 import {AxiosError, isAxiosError} from 'axios';
+import {v4 as uuidv4} from 'uuid';
+
 import {IUserJoinRoom} from '@src/types';
+
 import axios from './index';
 
 const joinRoom = async ({

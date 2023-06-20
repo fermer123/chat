@@ -1,6 +1,7 @@
 /* eslint-disable react/no-children-prop */
-import renderer from 'react-test-renderer';
 import {MemoryRouter} from 'react-router-dom';
+import renderer from 'react-test-renderer';
+
 import ProtectedRoute from './ProtectedRoute';
 
 describe('protectedRoute', () => {

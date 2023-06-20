@@ -1,10 +1,11 @@
-import {useLocation, Route, Routes} from 'react-router-dom';
-import {FC, Suspense, lazy} from 'react';
-import Chat from './Pages/Chat/Chat';
+import {FC, lazy, Suspense} from 'react';
+import {Route, Routes, useLocation} from 'react-router-dom';
+
 import Header from './component/Header/Header';
-import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
 import Loading from './component/Loading/Loading';
 import LoadingRoom from './component/Loading/LoadingRoom';
+import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
+import Chat from './Pages/Chat/Chat';
 
 const Authorization = lazy(() => import('./Pages/Authorization/Authorization'));
 const SelectRoom = lazy(() => import('./Pages/SelectRoom/SelectRoom'));

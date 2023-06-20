@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import {FC, useEffect, useState} from 'react';
-import {io, Socket} from 'socket.io-client';
 import {useLocation} from 'react-router-dom';
-import {IMessage} from '@src/types';
+import {io, Socket} from 'socket.io-client';
 
 import SnackbarComponent from '@src/components/component/Snackbar/SnackbarComponent';
+import {IMessage} from '@src/types';
 
 const Chat: FC = () => {
   const {search} = useLocation();

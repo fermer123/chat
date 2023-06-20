@@ -1,5 +1,7 @@
-import {render, screen} from '@testing-library/react';
 import renderer from 'react-test-renderer';
+
+import {render, screen} from '@testing-library/react';
+
 import LoadingRoom from './LoadingRoom';
 
 describe('LoadingRoom', () => {

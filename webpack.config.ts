@@ -1,8 +1,13 @@
-import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
-import type {Configuration as DevServerConfiguration} from 'webpack-dev-server';
 import type {Configuration} from 'webpack';
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
+import type {Configuration as DevServerConfiguration} from 'webpack-dev-server';
+
+const analyzerOptions = {
+  openAnalyzer: true,
+};
 
 const devServer: DevServerConfiguration = {
   port: 3001,
@@ -36,6 +41,7 @@ const config: Configuration = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public/index.html'),
     }),
+    new BundleAnalyzerPlugin(analyzerOptions),
   ],
   module: {
     rules: [

@@ -1,6 +1,7 @@
 import {FC, memo} from 'react';
-import {TextField} from '@mui/material';
 import {FieldProps} from 'formik';
+
+import {TextField} from '@mui/material';
 
 export interface IInputFormProps {
   label: string;

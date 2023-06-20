@@ -1,7 +1,9 @@
-import renderer from 'react-test-renderer';
-import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import {MemoryRouter} from 'react-router-dom';
+import renderer from 'react-test-renderer';
+
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import Header from './Header';
 
 describe('Header', () => {

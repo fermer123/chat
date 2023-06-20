@@ -1,6 +1,8 @@
-import {v4 as uuidv4} from 'uuid';
-import {IUserAuthProps} from '@src/types';
 import {AxiosError, isAxiosError} from 'axios';
+import {v4 as uuidv4} from 'uuid';
+
+import {IUserAuthProps} from '@src/types';
+
 import axios from './index';
 
 const userLogin = async <T>({

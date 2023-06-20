@@ -7,7 +7,7 @@
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
-    "allowJs": true,
+    "allowJs": false,
     "baseUrl": "./",
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -21,7 +21,6 @@
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "noFallthroughCasesInSwitch": true,
-
     "skipLibCheck": true //temporarily
   },
   "exclude": ["node_modules", "build"],
