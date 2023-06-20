@@ -47,7 +47,11 @@ const SnackbarComponent: FC<ISnackbarComponentProps> = ({
   );
 
   return (
-    <Snackbar open={open} autoHideDuration={5000} action={action}>
+    <Snackbar
+      open={open}
+      autoHideDuration={5000}
+      action={action}
+      onClose={handleClose}>
       <MuiAlert severity={error ? 'error' : 'success'} sx={{width: '100%'}}>
         {message}
       </MuiAlert>
