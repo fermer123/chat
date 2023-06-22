@@ -24,8 +24,14 @@ const config: Configuration = {
   entry: path.join(__dirname, 'src/index.tsx'),
   output: {
     path: path.join(__dirname, 'build'),
-    filename: 'build.js',
+    filename: '[name].[contenthash].js',
     clean: true,
+    chunkFilename: '[name].[contenthash].js',
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
