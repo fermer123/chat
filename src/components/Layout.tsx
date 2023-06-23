@@ -5,7 +5,8 @@ import Header from './component/Header/Header';
 import Loading from './component/Loading/Loading';
 import LoadingRoom from './component/Loading/LoadingRoom';
 import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
-import Chat from './Pages/Chat/Chat';
+
+const {default: Chat} = await import('./Pages/Chat/Chat');
 
 const Authorization = lazy(() => import('./Pages/Authorization/Authorization'));
 const SelectRoom = lazy(() => import('./Pages/SelectRoom/SelectRoom'));

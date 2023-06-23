@@ -43,6 +43,9 @@ const config: Configuration = {
   },
   devServer,
   devtool: 'source-map',
+  experiments: {
+    topLevelAwait: true,
+  }, // only before 5.83
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public/index.html'),

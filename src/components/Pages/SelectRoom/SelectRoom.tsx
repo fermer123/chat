@@ -1,24 +1,17 @@
-import {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import {FC, useMemo, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 
 import {Stack, Typography} from '@mui/material';
 import joinRoom from '@src/components/api/joinRoom';
 import useLocalStorage from '@src/components/component/Hooks/useLocalStorage';
-// import MultipleSelect from '@src/components/component/MultipleSelect/MultipleSelect';
-import PostButton from '@src/components/component/PostButton/PostButton';
 
-type MultipleSelectComponentProps = {
-  selectRoom: string;
-  setSelectRoom: Dispatch<SetStateAction<string>>;
-};
+const {default: MultipleSelect} = await import(
+  '@src/components/component/MultipleSelect/MultipleSelect'
+);
+const {default: PostButton} = await import(
+  '@src/components/component/PostButton/PostButton'
+);
 
 const SelecetRoomContainer = styled(Stack)`
   display: flex;
@@ -38,18 +31,6 @@ const SelectRoom: FC = () => {
   const [selectRoom, setSelectRoom] = useState<string>('1');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string>('');
-  const [MultipleSelectComponent, setMultipleSelectComponent] =
-    useState<FC<MultipleSelectComponentProps> | null>(null);
-
-  useEffect(() => {
-    const loadMultipleSelect = async () => {
-      const {default: MultipleSelect} = await import(
-        '@src/components/component/MultipleSelect/MultipleSelect'
-      );
-      setMultipleSelectComponent(() => MultipleSelect);
-    };
-    loadMultipleSelect();
-  }, []);
 
   const userNameHandler = useMemo(() => {
     const findSymbol = user.split('').findIndex((e) => e === '@');
@@ -70,12 +51,7 @@ const SelectRoom: FC = () => {
   return (
     <SelecetRoomContainer>
       <Typography variant='h2'>Hello {userNameHandler}</Typography>
-      {MultipleSelectComponent && (
-        <MultipleSelectComponent
-          selectRoom={selectRoom}
-          setSelectRoom={setSelectRoom}
-        />
-      )}
+      <MultipleSelect selectRoom={selectRoom} setSelectRoom={setSelectRoom} />
       <PostButton
         disabled={!selectRoom}
         label={selectRoom ? `join the ${selectRoom} room` : 'select room'}
