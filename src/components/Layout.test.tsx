@@ -16,15 +16,6 @@ describe('Layout', () => {
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
-  // eslint-disable-next-line jest/no-commented-out-tests
-  // test('expect header when location is not "/"', () => {
-  //   render(
-  //     <MemoryRouter initialEntries={['/room']}>
-  //       <Layout />
-  //     </MemoryRouter>,
-  //   );
-  //   expect(screen.getByTestId('AvatarButton')).toBeInTheDocument();
-  // });
   test('expect header not to be in document when location is "/"', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
