@@ -6,8 +6,7 @@ import Loading from './component/Loading/Loading';
 import LoadingRoom from './component/Loading/LoadingRoom';
 import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
 
-const {default: Chat} = await import('./Pages/Chat/Chat');
-
+const Chat = lazy(() => import('./Pages/Chat/Chat'));
 const Authorization = lazy(() => import('./Pages/Authorization/Authorization'));
 const SelectRoom = lazy(() => import('./Pages/SelectRoom/SelectRoom'));
 const Layout: FC = () => {
