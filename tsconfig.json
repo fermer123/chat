@@ -1,7 +1,12 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "compilerOptions": {
     "outDir": "./dist",
-    "module": "commonjs",
+    "module": "ESNext",
     "moduleResolution": "node",
     "target": "ESNext",
     "removeComments": true,
