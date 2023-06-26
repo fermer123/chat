@@ -10,7 +10,7 @@
     "analyze": "webpack --config webpack.config.ts --progress --profile --json > dist/stats.json && npx webpack-bundle-analyzer dist/stats.json",
     "lint": "eslint src/**/*.{ts,tsx} --quiet --fix",
     "test": "jest --runInBand --detectOpenHandles --forceExit",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -r esm dist/server/server.js\"",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -r esm -q dist/server/server.js\"",
     "serv": "node -r esm dist/server/server.js"
   },
   "keywords": [],
