@@ -7,6 +7,7 @@ import type {Configuration as DevServerConfiguration} from 'webpack-dev-server';
 
 const analyzerOptions = {
   openAnalyzer: true,
+  reportFilename: path.join(__dirname, 'dist/bundle-analysis.html'),
 };
 
 const devServer: DevServerConfiguration = {
