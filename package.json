@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-cli serve --mode=development --env development --open --hot",
     "build": "webpack --mode=production --env production --progress",
-    "analyze": "webpack --config webpack.config.ts --progress --profile --json > dist/stats.json && npx webpack-bundle-analyzer dist/stats.json",
+    "analyze": "webpack --profile --json >  dist/stats.json && webpack-bundle-analyzer dist/stats.json ",
     "lint": "eslint src/**/*.{ts,tsx} --quiet --fix",
     "test": "jest --runInBand --detectOpenHandles --forceExit",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -r esm -q dist/server/server.js\"",
