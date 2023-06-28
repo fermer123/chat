@@ -5,8 +5,11 @@ import {io, Socket} from 'socket.io-client';
 import styled from 'styled-components';
 
 import {Box} from '@mui/material';
-import SnackbarComponent from '@src/components/component/Snackbar/SnackbarComponent';
 import {IMessage} from '@src/types';
+
+const {default: SnackbarComponent} = await import(
+  '@src/components/component/Snackbar/SnackbarComponent'
+);
 
 const ChatContainer = styled(Box)`
   background-color: #286659;

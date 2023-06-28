@@ -3,9 +3,12 @@ import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 
 import {Stack, Typography} from '@mui/material';
-import joinRoom from '@src/components/api/joinRoom';
 import useLocalStorage from '@src/components/component/Hooks/useLocalStorage';
 
+const {default: getUserNameFromEmail} = await import(
+  '@src/components/api/getUserNameFromEmail'
+);
+const {default: joinRoom} = await import('@src/components/api/joinRoom');
 const {default: MultipleSelect} = await import(
   '@src/components/component/MultipleSelect/MultipleSelect'
 );
@@ -33,9 +36,7 @@ const SelectRoom: FC = () => {
   const [error, setError] = useState<string>('');
 
   const userNameHandler = useMemo(() => {
-    const findSymbol = user.split('').findIndex((e) => e === '@');
-    const userName = user.slice(0, findSymbol);
-    return userName;
+    return getUserNameFromEmail(user);
   }, [user]);
 
   const onJoin = () => {
