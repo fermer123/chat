@@ -2,20 +2,16 @@
 import {FC, useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import {io, Socket} from 'socket.io-client';
-import styled from 'styled-components';
 
-import {Box} from '@mui/material';
+import {Avatar, AvatarGroup, Typography} from '@mui/material';
 import {IMessage} from '@src/types';
 
+const {ChatContainer, ChatContainerHead, ChatContainerContent} = await import(
+  './ChatStyle'
+);
 const {default: SnackbarComponent} = await import(
   '@src/components/component/Snackbar/SnackbarComponent'
 );
-
-const ChatContainer = styled(Box)`
-  background-color: #286659;
-  height: calc(100% - 84px);
-  padding: 1rem 1rem;
-`;
 
 const Chat: FC = () => {
   const {search} = useLocation();
@@ -39,26 +35,29 @@ const Chat: FC = () => {
       setMessage((e: IMessage[]) => [...e, data]);
       setUserJoin(data.message);
     });
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <ChatContainer>
-      <div>
-        head
-        <div>room name</div>
-        <div>users connected</div>
-        <div>leave room</div>
-      </div>
-      <div>
+      <ChatContainerHead>
+        <Typography>Room №{params?.room}</Typography>
+        <AvatarGroup max={4}>
+          {Array(10)
+            .fill('w')
+            .map((e) => (
+              <Avatar>{e}</Avatar>
+            ))}
+        </AvatarGroup>
+      </ChatContainerHead>
+      <ChatContainerContent>
         {message.map((e) => (
           <>
             <div>{e.user}</div>
             <div>{e.message}</div>
           </>
         ))}
-      </div>
+      </ChatContainerContent>
       <div>footer send message</div>
       <SnackbarComponent
         error={false}

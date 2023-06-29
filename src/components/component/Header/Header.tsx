@@ -1,27 +1,13 @@
 import {FC, memo, MouseEvent, useCallback, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import styled from 'styled-components';
 
-import {Avatar, Box, Button, Popover, Typography} from '@mui/material';
+import {Avatar, Button, Popover, Typography} from '@mui/material';
 
 import useLocalStorage from '../Hooks/useLocalStorage';
 
-const HeaderContainer = styled(Box)`
-  width: 100%;
-  padding: 1rem 1rem;
-  display: flex;
-  justify-content: flex-end;
-  background-color: #607d8b;
-`;
-
-const AvatarButton = styled(Button)`
-  background-color: transparent;
-`;
-const PopoverList = styled(Box)`
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-`;
+const {AvatarButton, HeaderContainer, PopoverList} = await import(
+  './HeadStyle'
+);
 
 const Header: FC = () => {
   const push = useNavigate();

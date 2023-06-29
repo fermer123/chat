@@ -14,7 +14,11 @@ const Layout: FC = () => {
 
   return (
     <>
-      {location.pathname !== '/' ? <Header /> : ''}
+      {location.pathname !== '/' && location.pathname !== '/chat' ? (
+        <Header />
+      ) : (
+        ''
+      )}
       <Routes>
         <Route
           path='/'
