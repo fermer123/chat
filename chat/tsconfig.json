@@ -1,7 +1,7 @@
 {
   "ts-node": {
     "compilerOptions": {
-      "module": "commonjs"
+      "module": "CommonJS"
     }
   },
   "compilerOptions": {
@@ -26,14 +26,8 @@
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true //temporarily
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "build"],
-  "include": [
-    "./src",
-    "webpack.config.ts",
-    "jest.config.ts",
-    "./server",
-    "./server/**/*.json"
-  ]
+  "include": ["./src", "webpack.config.ts", "jest.config.ts"]
 }
