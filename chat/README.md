@@ -23,11 +23,3 @@ npm start
 # or
 yarn start
 ```
-
-# Для запуска [сервера](http://localhost:3000/) введите
-
-```
-npm run dev
-# or
-yarn dev
-```
