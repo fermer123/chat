@@ -13,12 +13,12 @@
     "resolveJsonModule": true,
     "downlevelIteration": true,
     "paths": {},
-    "lib": ["dom", "ESNext", "ScriptHost"],
+    "lib": ["dom", "ESNext"],
     "sourceMap": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "noFallthroughCasesInSwitch": true
   },
   "exclude": ["node_modules", "build"],
-  "include": ["./src", "./server.ts", "./src/**.json"]
+  "include": ["./src", "./server.ts", "./src/*.json"]
 }
