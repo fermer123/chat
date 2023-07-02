@@ -30,10 +30,16 @@ yarn dev
 
 ```
 docker build . -t server
+# or
+docker pull fermer123/server:latest
 ```
 
 ## Для запуска контейнера
 
 ```
-docker run -d -p 3000:3000 --name server server
+docker run -d -p 3000:3000 --name server --rm server
+# or
+docker run -d -p 3000:3000 --name server --rm fermer123/server
+# or
+make run
 ```
