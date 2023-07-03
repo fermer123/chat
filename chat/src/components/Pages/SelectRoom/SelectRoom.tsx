@@ -1,8 +1,6 @@
 import {FC, useMemo, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import styled from 'styled-components';
 
-import {Stack, Typography} from '@mui/material';
 import useLocalStorage from '@src/components/component/Hooks/useLocalStorage';
 
 const {default: getUserNameFromEmail} = await import(
@@ -16,17 +14,7 @@ const {default: PostButton} = await import(
   '@src/components/component/PostButton/PostButton'
 );
 
-const SelecetRoomContainer = styled(Stack)`
-  display: flex;
-  padding: 0 1rem;
-  height: calc(100% - 84px);
-  max-width: 720px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  gap: 1rem;
-`;
+const {SelecetRoomContainer, Title} = await import('./SelectRoomStyle');
 
 const SelectRoom: FC = () => {
   const push = useNavigate();
@@ -51,7 +39,7 @@ const SelectRoom: FC = () => {
 
   return (
     <SelecetRoomContainer>
-      <Typography variant='h2'>Hello {userNameHandler}</Typography>
+      <Title variant='h2'>Hello {userNameHandler}</Title>
       <MultipleSelect selectRoom={selectRoom} setSelectRoom={setSelectRoom} />
       <PostButton
         disabled={!selectRoom}

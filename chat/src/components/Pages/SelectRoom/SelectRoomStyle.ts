@@ -1,0 +1,20 @@
+import styled from 'styled-components';
+
+import {Stack, Typography} from '@mui/material';
+import colors from '@src/default_variables';
+
+export const SelecetRoomContainer = styled(Stack)`
+  display: flex;
+  padding: 0 1rem;
+  height: calc(100% - 84px);
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 1rem;
+  background-color: ${colors.dark};
+`;
+export const Title = styled(Typography)`
+  color: ${colors.white};
+`;

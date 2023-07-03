@@ -1,18 +1,14 @@
 import {FC, memo, useCallback} from 'react';
-import styled from 'styled-components';
+
+import {SelectChangeEvent} from '@mui/material';
 
 import {
-  Box,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material';
-
-const SelectRoom = styled(Box)`
-  width: 100%;
-`;
+  InputLabelText,
+  OutlinedInputItem,
+  OutlinedMenuItem,
+  SelectItem,
+  SelectRoom,
+} from './MultipleSelectStyle';
 
 export interface IMultipleSelectProps {
   selectRoom: string;
@@ -35,21 +31,21 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
   const selectList = ['1', '2', '3'];
   return (
     <SelectRoom>
-      <InputLabel id='demo-multiple-name-label'>select room</InputLabel>
-      <Select
+      <InputLabelText id='demo-multiple-name-label'>select room</InputLabelText>
+      <SelectItem
         fullWidth
         labelId='demo-multiple-name-label'
         id='demo-multiple-name'
         value={selectRoom}
         onChange={handleChange}
         data-testid='select'
-        input={<OutlinedInput label='room number' />}>
+        input={<OutlinedInputItem label='room number' />}>
         {selectList.map((room) => (
-          <MenuItem key={room} value={room}>
+          <OutlinedMenuItem key={room} value={room}>
             {room}
-          </MenuItem>
+          </OutlinedMenuItem>
         ))}
-      </Select>
+      </SelectItem>
     </SelectRoom>
   );
 };
