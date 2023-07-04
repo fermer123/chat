@@ -1,4 +1,4 @@
-import {FC, memo, useCallback} from 'react';
+import {FC, memo, useCallback, useState} from 'react';
 
 import {SelectChangeEvent} from '@mui/material';
 
@@ -19,6 +19,7 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
   selectRoom,
   setSelectRoom,
 }) => {
+  const [open, setOpen] = useState<boolean>(false);
   const handleChange = useCallback(
     (event: SelectChangeEvent<typeof selectRoom>) => {
       const {
@@ -28,15 +29,27 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
     },
     [setSelectRoom],
   );
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
   const selectList = ['1', '2', '3'];
   return (
-    <SelectRoom>
+    <SelectRoom open={open}>
       <InputLabelText id='demo-multiple-name-label'>select room</InputLabelText>
       <SelectItem
         fullWidth
         labelId='demo-multiple-name-label'
         id='demo-multiple-name'
         value={selectRoom}
+        open={open}
+        onOpen={handleOpen}
+        onClose={handleClose}
         onChange={handleChange}
         data-testid='select'
         input={<OutlinedInputItem label='room number' />}>
