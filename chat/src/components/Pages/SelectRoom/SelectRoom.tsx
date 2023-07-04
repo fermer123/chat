@@ -14,7 +14,9 @@ const {default: PostButton} = await import(
   '@src/components/component/PostButton/PostButton'
 );
 
-const {SelecetRoomContainer, Title} = await import('./SelectRoomStyle');
+const {SelecetRoomContainer, Title, SelectRoomItems} = await import(
+  './SelectRoomStyle'
+);
 
 const SelectRoom: FC = () => {
   const push = useNavigate();
@@ -40,12 +42,14 @@ const SelectRoom: FC = () => {
   return (
     <SelecetRoomContainer>
       <Title variant='h2'>Hello {userNameHandler}</Title>
-      <MultipleSelect selectRoom={selectRoom} setSelectRoom={setSelectRoom} />
-      <PostButton
-        disabled={!selectRoom}
-        label={selectRoom ? `join the ${selectRoom} room` : 'select room'}
-        onSubmit={onJoin}
-      />
+      <SelectRoomItems>
+        <MultipleSelect selectRoom={selectRoom} setSelectRoom={setSelectRoom} />
+        <PostButton
+          disabled={!selectRoom}
+          label={selectRoom ? `join the ${selectRoom} room` : 'select room'}
+          onSubmit={onJoin}
+        />
+      </SelectRoomItems>
     </SelecetRoomContainer>
   );
 };
