@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "webpack-cli serve --mode=development --env development --open --hot",
+    "start": "webpack serve --mode=development --env development --open --hot",
     "build": "webpack --mode=production --env production --progress",
     "analyze": "mkdir dist 2>nul && webpack --profile --json > dist/stats.json && webpack-bundle-analyzer dist/stats.json ",
     "lint": "eslint src/**/*.{ts,tsx} --quiet --fix",

@@ -31,6 +31,8 @@ const config: Configuration = {
     chunkFilename: '[name].[contenthash].js',
   },
   optimization: {
+    chunkIds: 'named',
+    usedExports: true,
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
