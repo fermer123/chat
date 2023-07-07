@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "webpack serve --mode=development --env development --open --hot",
     "build": "webpack --mode=production --env production --progress",

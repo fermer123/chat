@@ -5,9 +5,7 @@ import {Avatar, Button, Popover, Typography} from '@mui/material';
 
 import useLocalStorage from '../Hooks/useLocalStorage';
 
-const {AvatarButton, HeaderContainer, PopoverList} = await import(
-  './HeadStyle'
-);
+import {AvatarButton, HeaderContainer, PopoverList} from './HeadStyle';
 
 const Header: FC = () => {
   const push = useNavigate();
