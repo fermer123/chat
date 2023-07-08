@@ -6,9 +6,12 @@ import {io, Socket} from 'socket.io-client';
 import {Avatar, AvatarGroup, Typography} from '@mui/material';
 import {IMessage} from '@src/types';
 
-const {ChatContainer, ChatContainerHead, ChatContainerContent} = await import(
-  './ChatStyle'
-);
+import {
+  ChatContainer,
+  ChatContainerContent,
+  ChatContainerHead,
+} from './ChatStyle';
+
 const {default: SnackbarComponent} = await import(
   '@src/components/component/Snackbar/SnackbarComponent'
 );
