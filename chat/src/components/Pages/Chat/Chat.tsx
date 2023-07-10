@@ -4,12 +4,15 @@ import {useLocation} from 'react-router-dom';
 import {io, Socket} from 'socket.io-client';
 
 import {Avatar, AvatarGroup, Typography} from '@mui/material';
+import useInput from '@src/components/component/Hooks/useInput';
 import {IMessage} from '@src/types';
 
 import {
   ChatContainer,
   ChatContainerContent,
   ChatContainerHead,
+  ChatContentDialog,
+  ChatContentMessage,
 } from './ChatStyle';
 
 const {default: SnackbarComponent} = await import(
@@ -21,10 +24,12 @@ const Chat: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [params, setParams] = useState<Record<string, string> | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const {value, setValue, onChange} = useInput();
   const [message, setMessage] = useState<IMessage[]>([]);
   const [userJoin, setUserJoin] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
   const socket: Socket = io('http://localhost:3000/');
+
   useEffect(() => {
     const searchParams = Object.fromEntries(new URLSearchParams(search));
     setParams(searchParams);
@@ -54,14 +59,22 @@ const Chat: FC = () => {
         </AvatarGroup>
       </ChatContainerHead>
       <ChatContainerContent>
-        {message.map((e) => (
-          <>
-            <div>{e.user}</div>
-            <div>{e.message}</div>
-          </>
-        ))}
+        <ChatContentDialog>
+          {message.map((e) => (
+            <>
+              <div>{e.user}</div>
+              <div>{e.message}</div>
+            </>
+          ))}
+        </ChatContentDialog>
+        <ChatContentMessage
+          value={value}
+          label='Введите сообдение'
+          onChange={onChange}
+          fullWidth
+        />
       </ChatContainerContent>
-      <div>footer send message</div>
+
       <SnackbarComponent
         error={false}
         open={open}
