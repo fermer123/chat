@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import {FC, useEffect, useState} from 'react';
+import {FC, KeyboardEvent, useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import {io, Socket} from 'socket.io-client';
 
 import {Avatar, AvatarGroup} from '@mui/material';
 import useInput from '@src/components/component/Hooks/useInput';
 import useLocalStorage from '@src/components/component/Hooks/useLocalStorage';
-import Messages from '@src/components/component/Messages/Messages';
 import {IMessage} from '@src/types';
 
 import {
@@ -20,6 +19,9 @@ import {
 
 const {default: SnackbarComponent} = await import(
   '@src/components/component/Snackbar/SnackbarComponent'
+);
+const {default: Messages} = await import(
+  '@src/components/component/Messages/Messages'
 );
 
 const Chat: FC = () => {
@@ -50,6 +52,13 @@ const Chat: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleMessage = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && value.length) {
+      socket.emit('sendMessage', {value, params});
+      setValue('');
+    }
+  };
+
   return (
     <ChatContainer>
       <ChatContainerHead>
@@ -57,8 +66,9 @@ const Chat: FC = () => {
         <AvatarGroup max={4}>
           {Array(10)
             .fill('w')
-            .map((e) => (
-              <Avatar>{e}</Avatar>
+            .map((e, idx) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <Avatar key={idx}>{e}</Avatar>
             ))}
         </AvatarGroup>
       </ChatContainerHead>
@@ -76,8 +86,9 @@ const Chat: FC = () => {
         </ChatContentDialog>
         <ChatContentMessage
           value={value}
-          label='Введите сообдение'
+          label='Введите сообщение'
           onChange={onChange}
+          onKeyDown={handleMessage}
           fullWidth
         />
       </ChatContainerContent>
