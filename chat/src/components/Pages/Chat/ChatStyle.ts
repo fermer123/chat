@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Box, TextField} from '@mui/material';
+import {Box, TextField, Typography} from '@mui/material';
 import colors from '@src/default_variables';
 
 export const ChatContainer = styled(Box)`
@@ -15,6 +15,11 @@ export const ChatContainerHead = styled(Box)`
   max-height: 84px;
   height: 100%;
 `;
+
+export const RoomName = styled(Typography)({
+  color: colors.white,
+  fontSize: '2rem',
+});
 export const ChatContainerContent = styled(Box)`
   display: flex;
   flex-direction: column;

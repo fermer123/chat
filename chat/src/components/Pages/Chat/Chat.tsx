@@ -3,8 +3,10 @@ import {FC, useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import {io, Socket} from 'socket.io-client';
 
-import {Avatar, AvatarGroup, Typography} from '@mui/material';
+import {Avatar, AvatarGroup} from '@mui/material';
 import useInput from '@src/components/component/Hooks/useInput';
+import useLocalStorage from '@src/components/component/Hooks/useLocalStorage';
+import Messages from '@src/components/component/Messages/Messages';
 import {IMessage} from '@src/types';
 
 import {
@@ -13,6 +15,7 @@ import {
   ChatContainerHead,
   ChatContentDialog,
   ChatContentMessage,
+  RoomName,
 } from './ChatStyle';
 
 const {default: SnackbarComponent} = await import(
@@ -21,6 +24,7 @@ const {default: SnackbarComponent} = await import(
 
 const Chat: FC = () => {
   const {search} = useLocation();
+  const [user] = useLocalStorage('user', 'default');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [params, setParams] = useState<Record<string, string> | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -36,7 +40,7 @@ const Chat: FC = () => {
     socket.emit('join', searchParams);
     setOpen(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [search]);
 
   useEffect(() => {
     socket.on('message', (data: IMessage) => {
@@ -49,7 +53,7 @@ const Chat: FC = () => {
   return (
     <ChatContainer>
       <ChatContainerHead>
-        <Typography>Room №{params?.room}</Typography>
+        <RoomName>Room №{params?.room}</RoomName>
         <AvatarGroup max={4}>
           {Array(10)
             .fill('w')
@@ -60,11 +64,14 @@ const Chat: FC = () => {
       </ChatContainerHead>
       <ChatContainerContent>
         <ChatContentDialog>
-          {message.map((e) => (
-            <>
-              <div>{e.user}</div>
-              <div>{e.message}</div>
-            </>
+          {message.map((e, idx) => (
+            <Messages
+              // eslint-disable-next-line react/no-array-index-key
+              key={idx}
+              message={e.message}
+              user={e.user}
+              defineUser={e.user === user}
+            />
           ))}
         </ChatContentDialog>
         <ChatContentMessage
