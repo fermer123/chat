@@ -13,6 +13,10 @@ export type IRoomUser = {
   selectRoom: string;
   email: email;
 };
+export interface IUrlParam {
+  name: string;
+  room: string;
+}
 
 export interface IUserMessage {
   value: string;
@@ -28,9 +32,4 @@ export interface ChatData {
 export interface IUserData {
   users: IAuth[];
   rooms: ChatData[];
-}
-
-export interface IUrlParam {
-  name: string;
-  room: string;
 }

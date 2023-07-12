@@ -75,7 +75,10 @@ io.on('connection', (socket) => {
       rooms.find((e) =>
         e.roomid === params.room ? e.messages.push({value, params}) : e,
       );
-      io.to(user.selectRoom).emit('message', {user, value});
+      io.emit('message', {
+        user: params.name,
+        message: value,
+      });
     }
     fs.writeFileSync(
       USERS_JSON_FILE,
