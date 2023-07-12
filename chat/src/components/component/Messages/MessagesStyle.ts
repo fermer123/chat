@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import {Container, Typography} from '@mui/material';
 import colors from '@src/default_variables';
 
-export const MessageContainer = styled(Container)<{defineUser: boolean}>(
-  ({defineUser}) => ({
+export const MessageContainer = styled(Container)<{defineuser: string}>(
+  ({defineuser}) => ({
     width: '100%',
-    textAlign: defineUser ? 'end' : 'start',
+    textAlign: defineuser === 'true' ? 'end' : 'start',
   }),
 );
 

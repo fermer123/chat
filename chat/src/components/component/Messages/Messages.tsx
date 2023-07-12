@@ -5,13 +5,12 @@ import {DialogMessage, DialogName, MessageContainer} from './MessagesStyle';
 interface IMessage {
   user: string;
   message: string;
-  key: number;
   defineUser: boolean;
 }
 
-const Messages: FC<IMessage> = ({key, message, user, defineUser}) => {
+const Messages: FC<IMessage> = ({message, user, defineUser}) => {
   return (
-    <MessageContainer defineUser={defineUser} key={key}>
+    <MessageContainer defineuser={defineUser ? 'true' : undefined}>
       <DialogName>{user}</DialogName>
       <DialogMessage>{message}</DialogMessage>
     </MessageContainer>
