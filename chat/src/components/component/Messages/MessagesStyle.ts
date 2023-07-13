@@ -7,8 +7,6 @@ export const MessageContainer = styled(Container)<{defineuser: string}>(
   ({defineuser}) => ({
     width: '100%',
     textAlign: defineuser === 'true' ? 'end' : 'start',
-    height: '100%',
-    overflowY: 'scroll',
   }),
 );
 

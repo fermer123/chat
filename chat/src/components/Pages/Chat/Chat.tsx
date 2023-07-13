@@ -51,7 +51,6 @@ const Chat: FC = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(message);
   const handleMessage = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && value.length) {
       socket.emit('sendMessage', {value, params});

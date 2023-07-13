@@ -37,6 +37,7 @@ export const ChatContentDialog = styled(Box)`
   max-height: calc(100% - 56px - 1rem);
   height: 100%;
   border: 1px solid ${colors.white};
+  overflow-y: scroll;
 `;
 
 export const ChatContentMessage = styled(TextField)({
